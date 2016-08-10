@@ -1,0 +1,19 @@
+﻿<Window x:Class="JogoApp.CadastrarUsr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JogoApp"
+        mc:Ignorable="d"
+        Title="CadastrarUsr" Height="300" Width="300">
+    <Grid>
+        <Label x:Name="lblNome" Content="Nome:" HorizontalAlignment="Left" Margin="53,42,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="23" Margin="108,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="53,70,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtSenha" HorizontalAlignment="Left" Height="23" Margin="110,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnCad" Content="Cadastrar" HorizontalAlignment="Left" Margin="155,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,98,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="110,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

@@ -86,6 +86,8 @@ namespace JogoRest.Models
 		
 		private string _Email;
 		
+		private string _Senha;
+		
 		private string _Imagem;
 		
     #region Extensibility Method Definitions
@@ -98,6 +100,8 @@ namespace JogoRest.Models
     partial void OnNomeChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
+    partial void OnSenhaChanging(string value);
+    partial void OnSenhaChanged();
     partial void OnImagemChanging(string value);
     partial void OnImagemChanged();
     #endregion
@@ -127,7 +131,7 @@ namespace JogoRest.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string Nome
 		{
 			get
@@ -147,7 +151,7 @@ namespace JogoRest.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string Email
 		{
 			get
@@ -167,7 +171,27 @@ namespace JogoRest.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagem", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Senha", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Senha
+		{
+			get
+			{
+				return this._Senha;
+			}
+			set
+			{
+				if ((this._Senha != value))
+				{
+					this.OnSenhaChanging(value);
+					this.SendPropertyChanging();
+					this._Senha = value;
+					this.SendPropertyChanged("Senha");
+					this.OnSenhaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagem", DbType="VarChar(MAX)")]
 		public string Imagem
 		{
 			get

@@ -34,6 +34,7 @@ namespace JogoRest.Controllers
             Models.JogoDataContext dc = new Models.JogoDataContext();
             Models.Usuario usr = (from u in dc.Usuarios where u.Id == id select u).Single();
             usr.Nome = x.Nome;
+            usr.Senha = x.Senha;
             usr.Email = x.Email;
             usr.Imagem = x.Imagem;
             dc.SubmitChanges();
