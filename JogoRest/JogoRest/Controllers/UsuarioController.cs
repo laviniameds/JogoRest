@@ -32,7 +32,9 @@ namespace JogoRest.Controllers
         {
             Models.Usuario x = JsonConvert.DeserializeObject< Models.Usuario> (value);
             Models.JogoDataContext dc = new Models.JogoDataContext();
-            Models.Usuario usr = (from u in dc.Usuarios where u.Id == id select u).Single();
+            Models.Usuario usr = (from u in dc.Usuarios
+                                  where u.Id == id
+                                  select u).Single();
             usr.Nome = x.Nome;
             usr.Senha = x.Senha;
             usr.Email = x.Email;
@@ -41,12 +43,24 @@ namespace JogoRest.Controllers
         }
 
         // DELETE api/usuario
-        public void Delete(string nome)
+        public void Delete(int id)
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
-            Models.Usuario usr = (from u in dc.Usuarios where u.Nome == nome select u).Single();
+            Models.Usuario usr = (from u in dc.Usuarios
+                                  where u.Id == id
+                                  select u).Single();
             dc.Usuarios.DeleteOnSubmit(usr);
             dc.SubmitChanges();
         }
+
+        /*public Models.Usuario Buscar(string nome, string senha)
+        {
+            Models.JogoDataContext dc = new Models.JogoDataContext();
+            Models.Usuario usr = (from u in dc.Usuarios
+                                  where u.Nome == nome &&
+                                  u.Senha == senha
+                                  select u).Single();
+            return usr;
+        }*/
     }
 }
