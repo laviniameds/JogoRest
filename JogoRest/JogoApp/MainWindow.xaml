@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JogoApp"
         mc:Ignorable="d"
-        Title="Rede de Jogos" Height="224" Width="263.667">
+        Title="Rede de Jogos" Height="210.261" Width="343.71">
     <Grid>
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Cadastrar Usuário" Click="CadUsr_Click"></MenuItem>
             <MenuItem Header="Excluir Usuário" Click="ExcluirUsr_Click"></MenuItem>
+            <MenuItem Header="Atualizar Usuário" Click="AtualizarUsr_Click"></MenuItem>
         </Menu>
         <Label x:Name="lblNome" Content="Usuário:" HorizontalAlignment="Left" Margin="22,63,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="23" Margin="77,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

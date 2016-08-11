@@ -42,8 +42,7 @@ namespace JogoApp
                 if(usr.Senha == txtSenha.Text)
                 {
                     MessageBox.Show("Login realizado com sucesso!");
-                    PagInicial p = new PagInicial();
-                    p.Show();
+                    (new PagInicial()).Show();
                 }
             }
         }
@@ -61,6 +60,11 @@ namespace JogoApp
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             Buscar();
+        }
+
+        private void AtualizarUsr_Click(object sender, RoutedEventArgs e)
+        {
+            (new AtualizarUsr()).Show();
         }
     }
 }

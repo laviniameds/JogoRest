@@ -23,5 +23,10 @@ namespace JogoApp
         {
             InitializeComponent();
         }
+
+        private void btnPerfil_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
