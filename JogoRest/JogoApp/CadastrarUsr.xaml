@@ -11,7 +11,7 @@
         <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="23" Margin="108,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="53,70,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtSenha" HorizontalAlignment="Left" Height="23" Margin="110,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnCad" Content="Cadastrar" HorizontalAlignment="Left" Margin="155,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnCad" Content="Cadastrar" HorizontalAlignment="Left" Margin="155,156,0,0" VerticalAlignment="Top" Width="75" Click="btnCad_Click"/>
         <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,98,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="23" Margin="110,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 

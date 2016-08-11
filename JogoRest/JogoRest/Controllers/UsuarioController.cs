@@ -41,10 +41,10 @@ namespace JogoRest.Controllers
         }
 
         // DELETE api/usuario
-        public void Delete(int id)
+        public void Delete(string nome)
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
-            Models.Usuario usr = (from u in dc.Usuarios where u.Id == id select u).Single();
+            Models.Usuario usr = (from u in dc.Usuarios where u.Nome == nome select u).Single();
             dc.Usuarios.DeleteOnSubmit(usr);
             dc.SubmitChanges();
         }

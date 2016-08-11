@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -18,18 +17,18 @@ using Newtonsoft.Json;
 namespace JogoApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ExcluirUsr.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ExcluirUsr : Window
     {
-        public MainWindow()
+        public ExcluirUsr()
         {
             InitializeComponent();
         }
 
         private string ip = "http://localhost:52874/";
 
-        private async void Buscar()
+        private async void btnExcluir_Click(object sender, RoutedEventArgs e)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
@@ -37,30 +36,14 @@ namespace JogoApp
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
             Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
-            if(usr != null)
+            if (usr != null)
             {
-                if(usr.Senha == txtSenha.Text)
+                if (usr.Senha == txtSenha.Text)
                 {
-                    MessageBox.Show("Login realizado com sucesso!");
-                    PagInicial p = new PagInicial();
-                    p.Show();
+                    await httpClient.DeleteAsync("/api/Usuario/" + usr.Nome);
+                    MessageBox.Show("Deletado com sucesso!");
                 }
             }
-        }
-
-        private void ExcluirUsr_Click(object sender, RoutedEventArgs e)
-        {
-            (new ExcluirUsr()).Show();
-        }
-
-        private void CadUsr_Click(object sender, RoutedEventArgs e)
-        {
-            (new CadastrarUsr()).Show();
-        }
-
-        private void btnEntrar_Click(object sender, RoutedEventArgs e)
-        {
-            Buscar();
         }
     }
 }
