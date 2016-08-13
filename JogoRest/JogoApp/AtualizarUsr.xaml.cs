@@ -38,7 +38,7 @@ namespace JogoApp
             Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
             Models.Usuario usr2 = new Models.Usuario
             {
-                Id = usr.Id,
+                //Id = usr.Id,
                 Nome = usr.Nome,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Text,
@@ -46,7 +46,7 @@ namespace JogoApp
             };
             string s = "=" + JsonConvert.SerializeObject(usr2);
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
+            //await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
             MessageBox.Show("Atualizado com sucesso!");
         }
     }

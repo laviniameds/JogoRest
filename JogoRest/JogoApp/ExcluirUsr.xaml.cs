@@ -40,7 +40,7 @@ namespace JogoApp
             {
                 if (usr.Senha == txtSenha.Text)
                 {
-                    await httpClient.DeleteAsync("/api/Usuario/" + usr.Id);
+                    await httpClient.DeleteAsync("/api/Usuario/" + usr.Nome);
                     MessageBox.Show("Deletado com sucesso!");
                 }
             }

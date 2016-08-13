@@ -29,7 +29,7 @@ namespace JogoApp
 
         private string ip = "http://localhost:52874/";
 
-        private async void Buscar()
+        private async void Autenticar()
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
@@ -37,19 +37,39 @@ namespace JogoApp
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
             Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
-            if(usr != null)
+            Models.Usuario usr2 = new Models.Usuario
             {
-                if(usr.Senha == txtSenha.Text)
+                Nome = usr.Nome,
+                Id = usr.Id,
+                Email = usr.Email,
+                Senha = usr.Senha,
+                Imagem = "",
+                EstaAutenticado = true
+            };
+            string s = "=" + JsonConvert.SerializeObject(usr2);
+            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
+        }
+
+        private async void Logar()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Usuario/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
+            Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
+            if (usr != null)
+            {
+                if (usr.Senha == txtSenha.Text)
                 {
+                    Autenticar();
                     MessageBox.Show("Login realizado com sucesso!");
                     (new PagInicial()).Show();
                 }
+                else MessageBox.Show("Senha Incorreta!");
             }
-        }
-
-        private void ExcluirUsr_Click(object sender, RoutedEventArgs e)
-        {
-            (new ExcluirUsr()).Show();
+            else MessageBox.Show("Usuário Inválido!");
         }
 
         private void CadUsr_Click(object sender, RoutedEventArgs e)
@@ -59,12 +79,7 @@ namespace JogoApp
 
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            Buscar();
-        }
-
-        private void AtualizarUsr_Click(object sender, RoutedEventArgs e)
-        {
-            (new AtualizarUsr()).Show();
+            Logar();
         }
     }
 }

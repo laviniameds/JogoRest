@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace JogoApp
 {
@@ -19,9 +21,22 @@ namespace JogoApp
     /// </summary>
     public partial class PagInicial : Window
     {
+        private string ip = "http://localhost:52874/";
+
+        private async void VerificarUsr()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Usuario/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
+            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
+            lblBemVindo.Content = "Bem-Vindo, " + usr.Nome + "!";
+        }
         public PagInicial()
         {
             InitializeComponent();
+            VerificarUsr();
         }
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)

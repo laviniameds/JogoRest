@@ -13,5 +13,6 @@ namespace JogoApp.Models
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Imagem { get; set; }
+        public bool EstaAutenticado { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace JogoRest.Controllers
         // POST api/usuario
         public void Post([FromBody] string value)
         {
-            List<Models.Usuario> x = JsonConvert.DeserializeObject< List < Models.Usuario>> (value);
+            List<Models.Usuario> x = JsonConvert.DeserializeObject<List<Models.Usuario>>(value);
             Models.JogoDataContext dc = new Models.JogoDataContext();
             dc.Usuarios.InsertAllOnSubmit(x);
             dc.SubmitChanges();
@@ -30,15 +30,15 @@ namespace JogoRest.Controllers
         // PUT api/usuario
         public void Put(int id, [FromBody] string value)
         {
-            Models.Usuario x = JsonConvert.DeserializeObject< Models.Usuario> (value);
+            Models.Usuario x = JsonConvert.DeserializeObject<Models.Usuario>(value);
             Models.JogoDataContext dc = new Models.JogoDataContext();
             Models.Usuario usr = (from u in dc.Usuarios
                                   where u.Id == id
                                   select u).Single();
-            usr.Nome = x.Nome;
             usr.Senha = x.Senha;
             usr.Email = x.Email;
             usr.Imagem = x.Imagem;
+            usr.EstaAutenticado = true;
             dc.SubmitChanges();
         }
 
@@ -53,12 +53,13 @@ namespace JogoRest.Controllers
             dc.SubmitChanges();
         }
 
-        /*public Models.Usuario Buscar(string nome, string senha)
+        /*[Route("API/Buscar/{nome:string}")]
+        [HttpPut]
+        public Models.Usuario Buscar(string nome)
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
             Models.Usuario usr = (from u in dc.Usuarios
-                                  where u.Nome == nome &&
-                                  u.Senha == senha
+                                  where u.Nome == nome
                                   select u).Single();
             return usr;
         }*/

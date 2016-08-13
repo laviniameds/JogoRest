@@ -37,7 +37,8 @@ namespace JogoApp
                 Nome = txtNome.Text,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Text,
-                Imagem = ""
+                Imagem = "",
+                EstaAutenticado = false
             };
             List<Models.Usuario> list = new List<Models.Usuario>();
             list.Add(u);

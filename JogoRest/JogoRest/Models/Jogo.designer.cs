@@ -22,7 +22,7 @@ namespace JogoRest.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="RedeDeJogosBD")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="JogosBD")]
 	public partial class JogoDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace JogoRest.Models
     #endregion
 		
 		public JogoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["RedeDeJogosBDConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -90,6 +90,8 @@ namespace JogoRest.Models
 		
 		private string _Imagem;
 		
+		private bool _EstaAutenticado;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -104,6 +106,8 @@ namespace JogoRest.Models
     partial void OnSenhaChanged();
     partial void OnImagemChanging(string value);
     partial void OnImagemChanged();
+    partial void OnEstaAutenticadoChanging(bool value);
+    partial void OnEstaAutenticadoChanged();
     #endregion
 		
 		public Usuario()
@@ -131,7 +135,7 @@ namespace JogoRest.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Nome
 		{
 			get
@@ -207,6 +211,26 @@ namespace JogoRest.Models
 					this._Imagem = value;
 					this.SendPropertyChanged("Imagem");
 					this.OnImagemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EstaAutenticado", DbType="Bit NOT NULL")]
+		public bool EstaAutenticado
+		{
+			get
+			{
+				return this._EstaAutenticado;
+			}
+			set
+			{
+				if ((this._EstaAutenticado != value))
+				{
+					this.OnEstaAutenticadoChanging(value);
+					this.SendPropertyChanging();
+					this._EstaAutenticado = value;
+					this.SendPropertyChanged("EstaAutenticado");
+					this.OnEstaAutenticadoChanged();
 				}
 			}
 		}
