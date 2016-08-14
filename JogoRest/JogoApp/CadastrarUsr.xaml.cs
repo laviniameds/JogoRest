@@ -28,6 +28,11 @@ namespace JogoApp
 
         private string ip = "http://localhost:52874/";
 
+        /*private void ChecarNome()
+        {
+            
+        }*/
+
         private async void Cadastrar()
         {
             HttpClient httpClient = new HttpClient();

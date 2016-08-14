@@ -8,6 +8,8 @@
         Title="PagInicial" Height="300" Width="300">
     <Grid>
         <Label x:Name="lblBemVindo" Content="BEM-VINDO!" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnPerfil" Content="Perfil" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="75" Click="btnPerfil_Click"/>
+        <Button x:Name="btnSair" Content="Sair" HorizontalAlignment="Left" Margin="112,64,0,0" VerticalAlignment="Top" Width="75" Click="btnSair_Click"/>
 
     </Grid>
 </Window>

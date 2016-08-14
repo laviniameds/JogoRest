@@ -38,7 +38,7 @@ namespace JogoRest.Controllers
             usr.Senha = x.Senha;
             usr.Email = x.Email;
             usr.Imagem = x.Imagem;
-            usr.EstaAutenticado = true;
+            usr.EstaAutenticado = x.EstaAutenticado;
             dc.SubmitChanges();
         }
 

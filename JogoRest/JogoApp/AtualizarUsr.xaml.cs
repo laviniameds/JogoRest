@@ -26,9 +26,9 @@ namespace JogoApp
             InitializeComponent();
         }
 
-        private string ip = "http://localhost:52874/";
+        //private string ip = "http://localhost:52874/";
 
-        private async void btnAtualizar_Click(object sender, RoutedEventArgs e)
+        /*private async void btnAtualizar_Click(object sender, RoutedEventArgs e)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
@@ -48,6 +48,6 @@ namespace JogoApp
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             //await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
             MessageBox.Show("Atualizado com sucesso!");
-        }
+        }*/
     }
 }

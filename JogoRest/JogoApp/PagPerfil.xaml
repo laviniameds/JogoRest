@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JogoApp"
         mc:Ignorable="d"
-        Title="PagPerfil" Height="300" Width="300">
+        Title="PagPerfil" Height="330.4" Width="307.2">
     <Grid>
-        
+        <Label x:Name="lblNome" Content="Nome:" HorizontalAlignment="Left" Margin="53,57,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNome" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="108,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAtualizar" Content="Atualizar" HorizontalAlignment="Left" Margin="153,241,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.987,2.281" Click="btnAtualizar_Click"/>
+        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="108,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblTitulo" Content="Conta" HorizontalAlignment="Center" Margin="108,0,106.6,225.4" FontSize="24" Width="79"/>
+        <Label x:Name="lblImagem" Content="Imagem:" HorizontalAlignment="Left" Margin="53,119,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="img" HorizontalAlignment="Left" Height="102" Margin="109,119,0,0" VerticalAlignment="Top" Width="119"/>
+
     </Grid>
 </Window>
