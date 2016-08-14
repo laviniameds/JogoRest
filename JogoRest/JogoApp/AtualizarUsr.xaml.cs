@@ -26,19 +26,19 @@ namespace JogoApp
             InitializeComponent();
         }
 
-        //private string ip = "http://localhost:52874/";
+        private string ip = "http://localhost:52874/";
 
-        /*private async void btnAtualizar_Click(object sender, RoutedEventArgs e)
+        private async void Atualizar()
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
             var response = await httpClient.GetAsync("/api/Usuario/");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
+            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
             Models.Usuario usr2 = new Models.Usuario
             {
-                //Id = usr.Id,
+                Id = usr.Id,
                 Nome = usr.Nome,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Text,
@@ -46,8 +46,14 @@ namespace JogoApp
             };
             string s = "=" + JsonConvert.SerializeObject(usr2);
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            //await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
+            await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
             MessageBox.Show("Atualizado com sucesso!");
-        }*/
+        }
+
+        private void btnAtualizar_Click(object sender, RoutedEventArgs e)
+        {
+            Atualizar();
+            this.Close();
+        }
     }
 }

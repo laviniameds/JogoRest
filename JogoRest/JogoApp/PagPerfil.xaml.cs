@@ -45,5 +45,32 @@ namespace JogoApp
         {
             (new AtualizarUsr()).Show();
         }
+
+        private void FecharJanelas()
+        {
+            foreach (Window w in Application.Current.Windows)
+                if (w != Application.Current.MainWindow) w.Close();
+        }
+
+        private async void Deletar()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Usuario/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
+            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
+            await httpClient.DeleteAsync("/api/Usuario/" + usr.Id);
+            MessageBox.Show("Deletado com sucesso!");
+        }
+
+        private void btnDeletar_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Você tem certeza?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Deletar();
+                FecharJanelas();
+            }
+        }
     }
 }
