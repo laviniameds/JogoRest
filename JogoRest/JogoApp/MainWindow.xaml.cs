@@ -61,7 +61,7 @@ namespace JogoApp
             Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
             if (usr != null)
             {
-                if (usr.Senha == txtSenha.Text)
+                if (usr.Senha == txtSenha.Password)
                 {
                     Autenticar();
                     MessageBox.Show("Login realizado com sucesso!");

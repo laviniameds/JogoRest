@@ -5,16 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JogoApp"
         mc:Ignorable="d"
-        Title="Rede de Jogos" Height="210.261" Width="343.71">
+        Title="Rede de Jogos" Height="287.357" Width="343.71">
     <Grid>
-        <Menu Height="25" VerticalAlignment="Top">
-            <MenuItem Header="Cadastrar-se" Click="CadUsr_Click"></MenuItem>
-        </Menu>
-        <Label x:Name="lblNome" Content="Usuário:" HorizontalAlignment="Left" Margin="22,63,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="23" Margin="77,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="22,105,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtSenha" HorizontalAlignment="Left" Height="23" Margin="77,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="122,153,0,0" VerticalAlignment="Top" Width="75" Click="btnEntrar_Click"/>
+        <Label x:Name="lblNome" Content="Usuário:" HorizontalAlignment="Left" Margin="82,17,0,0" VerticalAlignment="Top" Width="53"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="26" Margin="137,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="82,59,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="182,107,0,0" VerticalAlignment="Top" Width="75" Click="btnEntrar_Click" Background="White" BorderBrush="#FF72D0F9"/>
+        <Button x:Name="CadUsr" Content="Cadastre-se!" HorizontalAlignment="Left" Margin="82,167,0,0" VerticalAlignment="Top" Width="176" Background="#FF72D0F9" BorderThickness="0" Height="35" Foreground="White" FontSize="18" Click="CadUsr_Click"/>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="137,59,0,0" VerticalAlignment="Top" Width="120" Height="26" BorderThickness="0,0,0,1"/>
 
     </Grid>
 </Window>
