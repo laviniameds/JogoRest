@@ -8,14 +8,14 @@
         Title="PagPerfil" Height="330.4" Width="307.2">
     <Grid>
         <Label x:Name="lblNome" Content="Nome:" HorizontalAlignment="Left" Margin="53,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNome" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="108,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnAtualizar" Content="Atualizar" HorizontalAlignment="Left" Margin="153,241,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.987,2.281" Click="btnAtualizar_Click"/>
-        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmail" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="108,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblTitulo" Content="Conta" HorizontalAlignment="Center" Margin="108,0,106.6,225.4" FontSize="24" Width="79"/>
-        <Label x:Name="lblImagem" Content="Imagem:" HorizontalAlignment="Left" Margin="53,119,0,0" VerticalAlignment="Top"/>
-        <Image x:Name="img" HorizontalAlignment="Left" Height="102" Margin="109,119,0,0" VerticalAlignment="Top" Width="119"/>
-        <Button x:Name="btnDeletar" Content="Deletar Conta" HorizontalAlignment="Left" Margin="53,241,0,0" VerticalAlignment="Top" Width="85" Click="btnDeletar_Click"/>
+        <TextBox x:Name="txtNome" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="108,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <Button x:Name="btnAtualizar" Content="Atualizar" HorizontalAlignment="Left" Margin="153,264,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.987,2.281" Click="btnAtualizar_Click" Background="White" BorderBrush="#FF72D0F9"/>
+        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,92,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="108,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1"/>
+        <Label x:Name="lblTitulo" Content="Conta" HorizontalAlignment="Center" Margin="10,5,9.8,256.8" FontSize="24" Width="281" BorderThickness="0,0,0,1" BorderBrush="#FF72D0F9"/>
+        <Label x:Name="lblImagem" Content="Imagem:" HorizontalAlignment="Left" Margin="53,142,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="img" HorizontalAlignment="Left" Height="102" Margin="109,142,0,0" VerticalAlignment="Top" Width="119"/>
+        <Button x:Name="btnDeletar" Content="Deletar Conta" HorizontalAlignment="Left" Margin="53,264,0,0" VerticalAlignment="Top" Width="85" Click="btnDeletar_Click" BorderBrush="#FF72D0F9" Background="White"/>
 
     </Grid>
 </Window>
