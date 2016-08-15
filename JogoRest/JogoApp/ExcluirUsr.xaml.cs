@@ -38,7 +38,7 @@ namespace JogoApp
             Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
             if (usr != null)
             {
-                if (usr.Senha == txtSenha.Text)
+                if (usr.Senha == txtSenha.Password)
                 {
                     await httpClient.DeleteAsync("/api/Usuario/" + usr.Nome);
                     MessageBox.Show("Deletado com sucesso!");

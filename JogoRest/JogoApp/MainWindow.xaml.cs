@@ -64,7 +64,6 @@ namespace JogoApp
                 if (usr.Senha == txtSenha.Password)
                 {
                     Autenticar();
-                    MessageBox.Show("Login realizado com sucesso!");
                     (new PagInicial()).Show();
                 }
                 else MessageBox.Show("Senha Incorreta!");
