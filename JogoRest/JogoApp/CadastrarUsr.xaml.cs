@@ -41,7 +41,7 @@ namespace JogoApp
             {
                 Nome = txtNome.Text,
                 Email = txtEmail.Text,
-                Senha = txtSenha.Text,
+                Senha = txtSenha.Password,
                 Imagem = "",
                 EstaAutenticado = false
             };
