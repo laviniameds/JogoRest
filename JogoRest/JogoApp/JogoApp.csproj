@@ -117,6 +117,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="PagInicial.xaml.cs">

@@ -36,7 +36,7 @@ namespace JogoRest.Models
     #endregion
 		
 		public JogoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
