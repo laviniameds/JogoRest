@@ -28,10 +28,17 @@ namespace JogoApp
 
         private string ip = "http://localhost:52874/";
 
-        /*private void ChecarNome()
+        private async void ChecarNome()
         {
-            
-        }*/
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Usuario/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
+            Models.Usuario usr = obj.Find(x => x.Nome == txtNome.Text);
+            if (usr == null) Cadastrar();
+            else MessageBox.Show("Nome de usuário já existe!");
+        }
 
         private async void Cadastrar()
         {
@@ -55,7 +62,7 @@ namespace JogoApp
 
         private void btnCad_Click(object sender, RoutedEventArgs e)
         {
-            Cadastrar();
+            ChecarNome();
         }
     }
 }
