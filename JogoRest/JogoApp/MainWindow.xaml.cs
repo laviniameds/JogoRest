@@ -65,11 +65,11 @@ namespace JogoApp
                 {
                     Autenticar();
                     (new PagInicial()).Show();
-                    this.Close();
                 }
                 else MessageBox.Show("Senha Incorreta!");
             }
             else MessageBox.Show("Usuário Inválido!");
+            this.Close();
         }
 
         private void CadUsr_Click(object sender, RoutedEventArgs e)

@@ -42,6 +42,7 @@ namespace JogoApp
                 Nome = usr.Nome,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Password,
+                EstaAutenticado = true,
                 Imagem = ""
             };
             string s = "=" + JsonConvert.SerializeObject(usr2);

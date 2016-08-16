@@ -8,13 +8,13 @@ namespace JogoApp.Models
 {
    public class Jogo
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string ano { get; set; }
-        public string sinopse { get; set; }
-        public string desenvolvedora { get; set; }
-        public string notaMedia { get; set; }
-        public string img { get; set; }
-        public int idgenero { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Ano { get; set; }
+        public string Sinopse { get; set; }
+        public string Desenvolvedora { get; set; }
+        public string NotaMedia { get; set; }
+        public string Img { get; set; }
+        public int IdGenero { get; set; }
     }
 }
