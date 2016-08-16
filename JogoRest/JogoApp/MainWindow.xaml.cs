@@ -65,7 +65,7 @@ namespace JogoApp
                 {
                     Autenticar();
                     (new PagInicial()).Show();
-                    //this.Close();
+                    this.Close();
                 }
                 else MessageBox.Show("Senha Incorreta!");
             }

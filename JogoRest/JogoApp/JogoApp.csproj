@@ -82,10 +82,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExcluirUsr.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -99,9 +95,6 @@
     </Compile>
     <Compile Include="CadastrarUsr.xaml.cs">
       <DependentUpon>CadastrarUsr.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ExcluirUsr.xaml.cs">
-      <DependentUpon>ExcluirUsr.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -117,7 +110,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="PagInicial.xaml.cs">
