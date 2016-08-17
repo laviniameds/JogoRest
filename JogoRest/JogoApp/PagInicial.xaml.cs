@@ -85,7 +85,10 @@ namespace JogoApp
 
         private void detalhes_Click(object sender, RoutedEventArgs e)
         {
-            //
+            object myobject = ((Button)sender).CommandParameter;
+            Models.Jogo j = new Models.Jogo();
+            if (myobject is Models.Jogo) { j = (Models.Jogo)myobject; }
+            JogoDetalhes jogo = new JogoDetalhes(j);
         }
     }
 }
