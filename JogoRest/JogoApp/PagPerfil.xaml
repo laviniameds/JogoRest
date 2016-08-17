@@ -14,7 +14,7 @@
         <TextBox x:Name="txtEmail" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="108,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1"/>
         <Label x:Name="lblTitulo" Content="Conta" HorizontalAlignment="Center" Margin="10,5,9.8,244.8" FontSize="24" Width="281" BorderThickness="0,0,0,1" BorderBrush="#FF72D0F9"/>
         <Label x:Name="lblImagem" Content="Imagem:" HorizontalAlignment="Left" Margin="53,146,0,0" VerticalAlignment="Top"/>
-        <Image x:Name="img" HorizontalAlignment="Left" Height="102" Margin="109,146,0,0" VerticalAlignment="Top" Width="119"/>
+        <Image x:Name="img" Source="{Binding Imagem}" HorizontalAlignment="Left" Height="102" Margin="109,146,0,0" VerticalAlignment="Top" Width="119"/>
         <Button x:Name="btnDeletar" Content="Deletar Conta" HorizontalAlignment="Left" Margin="53,264,0,0" VerticalAlignment="Top" Width="85" Click="btnDeletar_Click" BorderBrush="#FF72D0F9" Background="White"/>
 
     </Grid>

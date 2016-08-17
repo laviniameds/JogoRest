@@ -19,9 +19,23 @@ namespace JogoApp
     /// </summary>
     public partial class JogoDetalhes : Window
     {
+        private static Models.Jogo jogo { get; set; }
+
         public JogoDetalhes(Models.Jogo j)
         {
             InitializeComponent();
+            jogo = new Models.Jogo();
+            jogo = j;
+            PopularPag();
+        }
+
+        private void PopularPag()
+        {
+            img.Source = new BitmapImage(new Uri(jogo.Imagem, UriKind.RelativeOrAbsolute));
+            tbSinopse.Text = jogo.Sinopse;
+            lblAno.Content = jogo.Ano;
+            lblMedia.Content = jogo.NotaMedia;
+            lblDesenvolvedora.Content = jogo.Desenvolvedora;
         }
     }
 }

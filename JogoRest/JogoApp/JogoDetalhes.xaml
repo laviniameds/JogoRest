@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JogoApp"
         mc:Ignorable="d"
-        Title="JogoDetalhes" Height="300" Width="300">
+        Title="JogoDetalhes" Height="449.6" Width="438.8">
     <Grid>
-        
+        <Image x:Name="img" HorizontalAlignment="Left" Height="170" Margin="44,24,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="label1" Content="Nota Média:" HorizontalAlignment="Left" Margin="145,140,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMedia" Content="Media" HorizontalAlignment="Left" Margin="220,140,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lbComentarios" HorizontalAlignment="Left" Height="211" Margin="44,199,0,0" VerticalAlignment="Top" Width="334"/>
+        <Label x:Name="label2" Content="Ano:" HorizontalAlignment="Left" Margin="145,124,0,0" VerticalAlignment="Top" Width="37"/>
+        <Label x:Name="lblAno" Content="Ano" HorizontalAlignment="Left" Margin="182,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.604,0.664"/>
+        <Label x:Name="label" Content="Desenvolvedora:" HorizontalAlignment="Left" Margin="145,158,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDesenvolvedora" Content="Desenvolvedora" HorizontalAlignment="Left" Margin="238,158,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Gênero:" HorizontalAlignment="Left" Margin="281,127,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Plataforma:" HorizontalAlignment="Left" Margin="281,145,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbSinopse" HorizontalAlignment="Left" Margin="149,24,0,0" TextWrapping="Wrap" Text="Sinopse" VerticalAlignment="Top" Height="100" Width="229"/>
+
     </Grid>
 </Window>
