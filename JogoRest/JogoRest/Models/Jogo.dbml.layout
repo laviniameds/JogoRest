@@ -2,11 +2,30 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Jogo">
   <DataContextMoniker Name="/JogoDataContext" />
   <nestedChildShapes>
-    <classShape Id="832e4b77-7877-4dc6-b679-9cdd4861c587" absoluteBounds="1.125, 1.875, 2, 1.9631982421875">
+    <classShape Id="832e4b77-7877-4dc6-b679-9cdd4861c587" absoluteBounds="0.75, 3.25, 2, 1.9631982421875005">
       <DataClassMoniker Name="/JogoDataContext/Usuario" />
       <nestedChildShapes>
-        <elementListCompartment Id="2d1c35c8-a1e8-414a-a652-cc1c0a9b2f5d" absoluteBounds="1.1400000000000001, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2d1c35c8-a1e8-414a-a652-cc1c0a9b2f5d" absoluteBounds="0.76500000000000012, 3.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="a13a966e-e4c8-46fe-8121-7ff6cec642e7" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/JogoDataContext/Jogo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5430b3eb-5803-4ad9-a3eb-c782e96fc135" absoluteBounds="3.5149999999999997, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="828cba21-816f-42f8-8683-9b6d8eba38ae" absoluteBounds="0.75, 1.5, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/JogoDataContext/Genero" />
+      <nestedChildShapes>
+        <elementListCompartment Id="78e4fbb4-dcdb-4614-83b7-816b6dc7b148" absoluteBounds="0.76500000000000012, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.09699625651042); (3.5 : 2.09699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Genero/Genero_Jogo" />
+      <nodes>
+        <classShapeMoniker Id="828cba21-816f-42f8-8683-9b6d8eba38ae" />
+        <classShapeMoniker Id="a13a966e-e4c8-46fe-8121-7ff6cec642e7" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

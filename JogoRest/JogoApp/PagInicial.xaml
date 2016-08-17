@@ -12,6 +12,24 @@
         <Label x:Name="lblBemVindo" Content="BEM-VINDO!" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="#FF72D0F9" Width="110" Foreground="White" FontSize="14"/>
         <Button x:Name="btnPerfil" Content="Perfil" HorizontalAlignment="Left" Margin="158,6,0,0" VerticalAlignment="Top" Width="61" Click="btnPerfil_Click" Background="#FF72D0F9" BorderBrush="White" Foreground="White" FontSize="11"/>
         <Button x:Name="btnSair" Content="Sair" HorizontalAlignment="Left" Margin="227,6,0,0" VerticalAlignment="Top" Width="57" Click="btnSair_Click" BorderThickness="1" Foreground="White" BorderBrush="White" Background="#FF72D0F9" FontSize="11"/>
-
+        <DataGrid x:Name="gridJogos" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="223" Width="274" AutoGenerateColumns="False" GridLinesVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Image}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Nome}"/>
+                <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button  Click="detalhes_Click" CommandParameter="{Binding}" Content="Detalhes"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

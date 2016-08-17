@@ -14,7 +14,7 @@ namespace JogoApp.Models
         public string Sinopse { get; set; }
         public string Desenvolvedora { get; set; }
         public string NotaMedia { get; set; }
-        public string Img { get; set; }
+        public string Imagem { get; set; }
         public int IdGenero { get; set; }
     }
 }

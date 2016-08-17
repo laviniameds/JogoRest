@@ -33,6 +33,12 @@ namespace JogoRest.Models
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
+    partial void InsertJogo(Jogo instance);
+    partial void UpdateJogo(Jogo instance);
+    partial void DeleteJogo(Jogo instance);
+    partial void InsertGenero(Genero instance);
+    partial void UpdateGenero(Genero instance);
+    partial void DeleteGenero(Genero instance);
     #endregion
 		
 		public JogoDataContext() : 
@@ -70,6 +76,22 @@ namespace JogoRest.Models
 			get
 			{
 				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Jogo> Jogos
+		{
+			get
+			{
+				return this.GetTable<Jogo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Genero> Generos
+		{
+			get
+			{
+				return this.GetTable<Genero>();
 			}
 		}
 	}
@@ -253,6 +275,391 @@ namespace JogoRest.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Jogo")]
+	public partial class Jogo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Nome;
+		
+		private string _Ano;
+		
+		private string _Sinopse;
+		
+		private string _Desenvolvedora;
+		
+		private string _NotaMedia;
+		
+		private string _Imagem;
+		
+		private int _IdGenero;
+		
+		private EntityRef<Genero> _Genero;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNomeChanging(string value);
+    partial void OnNomeChanged();
+    partial void OnAnoChanging(string value);
+    partial void OnAnoChanged();
+    partial void OnSinopseChanging(string value);
+    partial void OnSinopseChanged();
+    partial void OnDesenvolvedoraChanging(string value);
+    partial void OnDesenvolvedoraChanged();
+    partial void OnNotaMediaChanging(string value);
+    partial void OnNotaMediaChanged();
+    partial void OnImagemChanging(string value);
+    partial void OnImagemChanged();
+    partial void OnIdGeneroChanging(int value);
+    partial void OnIdGeneroChanged();
+    #endregion
+		
+		public Jogo()
+		{
+			this._Genero = default(EntityRef<Genero>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Nome
+		{
+			get
+			{
+				return this._Nome;
+			}
+			set
+			{
+				if ((this._Nome != value))
+				{
+					this.OnNomeChanging(value);
+					this.SendPropertyChanging();
+					this._Nome = value;
+					this.SendPropertyChanged("Nome");
+					this.OnNomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ano", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Ano
+		{
+			get
+			{
+				return this._Ano;
+			}
+			set
+			{
+				if ((this._Ano != value))
+				{
+					this.OnAnoChanging(value);
+					this.SendPropertyChanging();
+					this._Ano = value;
+					this.SendPropertyChanged("Ano");
+					this.OnAnoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sinopse", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Sinopse
+		{
+			get
+			{
+				return this._Sinopse;
+			}
+			set
+			{
+				if ((this._Sinopse != value))
+				{
+					this.OnSinopseChanging(value);
+					this.SendPropertyChanging();
+					this._Sinopse = value;
+					this.SendPropertyChanged("Sinopse");
+					this.OnSinopseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desenvolvedora", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Desenvolvedora
+		{
+			get
+			{
+				return this._Desenvolvedora;
+			}
+			set
+			{
+				if ((this._Desenvolvedora != value))
+				{
+					this.OnDesenvolvedoraChanging(value);
+					this.SendPropertyChanging();
+					this._Desenvolvedora = value;
+					this.SendPropertyChanged("Desenvolvedora");
+					this.OnDesenvolvedoraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NotaMedia", DbType="VarChar(50)")]
+		public string NotaMedia
+		{
+			get
+			{
+				return this._NotaMedia;
+			}
+			set
+			{
+				if ((this._NotaMedia != value))
+				{
+					this.OnNotaMediaChanging(value);
+					this.SendPropertyChanging();
+					this._NotaMedia = value;
+					this.SendPropertyChanged("NotaMedia");
+					this.OnNotaMediaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imagem", DbType="VarChar(MAX)")]
+		public string Imagem
+		{
+			get
+			{
+				return this._Imagem;
+			}
+			set
+			{
+				if ((this._Imagem != value))
+				{
+					this.OnImagemChanging(value);
+					this.SendPropertyChanging();
+					this._Imagem = value;
+					this.SendPropertyChanged("Imagem");
+					this.OnImagemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGenero", DbType="Int NOT NULL")]
+		public int IdGenero
+		{
+			get
+			{
+				return this._IdGenero;
+			}
+			set
+			{
+				if ((this._IdGenero != value))
+				{
+					if (this._Genero.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdGeneroChanging(value);
+					this.SendPropertyChanging();
+					this._IdGenero = value;
+					this.SendPropertyChanged("IdGenero");
+					this.OnIdGeneroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Genero", ThisKey="IdGenero", OtherKey="Id", IsForeignKey=true)]
+		public Genero Genero
+		{
+			get
+			{
+				return this._Genero.Entity;
+			}
+			set
+			{
+				Genero previousValue = this._Genero.Entity;
+				if (((previousValue != value) 
+							|| (this._Genero.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Genero.Entity = null;
+						previousValue.Jogos.Remove(this);
+					}
+					this._Genero.Entity = value;
+					if ((value != null))
+					{
+						value.Jogos.Add(this);
+						this._IdGenero = value.Id;
+					}
+					else
+					{
+						this._IdGenero = default(int);
+					}
+					this.SendPropertyChanged("Genero");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Genero")]
+	public partial class Genero : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Descricao;
+		
+		private EntitySet<Jogo> _Jogos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescricaoChanging(string value);
+    partial void OnDescricaoChanged();
+    #endregion
+		
+		public Genero()
+		{
+			this._Jogos = new EntitySet<Jogo>(new Action<Jogo>(this.attach_Jogos), new Action<Jogo>(this.detach_Jogos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descricao
+		{
+			get
+			{
+				return this._Descricao;
+			}
+			set
+			{
+				if ((this._Descricao != value))
+				{
+					this.OnDescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._Descricao = value;
+					this.SendPropertyChanged("Descricao");
+					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Jogos", ThisKey="Id", OtherKey="IdGenero")]
+		public EntitySet<Jogo> Jogos
+		{
+			get
+			{
+				return this._Jogos;
+			}
+			set
+			{
+				this._Jogos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Jogos(Jogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Genero = this;
+		}
+		
+		private void detach_Jogos(Jogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Genero = null;
 		}
 	}
 }

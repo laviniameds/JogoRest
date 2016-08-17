@@ -49,7 +49,9 @@ namespace JogoApp
         private void FecharJanelas()
         {
             foreach (Window w in Application.Current.Windows)
-                if (w != Application.Current.MainWindow) w.Close();
+            {
+                w.Close();
+            }
         }
 
         private async void Deletar()

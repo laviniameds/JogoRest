@@ -37,6 +37,17 @@ namespace JogoApp
         {
             InitializeComponent();
             VerificarUsr();
+            PopularGrid();
+        }
+
+        private async void PopularGrid()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Jogo/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Jogo> obj = JsonConvert.DeserializeObject<List<Models.Jogo>>(str);
+            gridJogos.ItemsSource = obj;
         }
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
@@ -69,7 +80,12 @@ namespace JogoApp
         private void btnSair_Click(object sender, RoutedEventArgs e)
         {
             Sair();
-            this.Close();
+            //this.Close();
+        }
+
+        private void detalhes_Click(object sender, RoutedEventArgs e)
+        {
+            //
         }
     }
 }
