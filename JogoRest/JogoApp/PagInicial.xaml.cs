@@ -22,21 +22,14 @@ namespace JogoApp
     public partial class PagInicial : Window
     {
         private string ip = "http://localhost:52874/";
+        private static Models.Usuario u;
 
-        private async void VerificarUsr()
-        {
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Usuario/");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
-            lblBemVindo.Content = "Bem-Vindo, " + usr.Nome + "!";
-        }
-        public PagInicial()
+        public PagInicial(Models.Usuario usr)
         {
             InitializeComponent();
-            VerificarUsr();
+            u = new Models.Usuario();
+            u = usr;
+            lblBemVindo.Content = "Bem-Vindo, " + u.Nome + "!";
             PopularGrid();
         }
 
@@ -52,7 +45,7 @@ namespace JogoApp
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
         {
-            (new PagPerfil()).Show();
+            (new PagPerfil(u)).Show();
         }
 
         private async void Sair()
@@ -80,7 +73,15 @@ namespace JogoApp
         private void btnSair_Click(object sender, RoutedEventArgs e)
         {
             Sair();
-            //this.Close();
+            FecharJanelas();
+        }
+
+        private void FecharJanelas()
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.Title != "Rede de Jogos" && w.Title != "") w.Close();
+            }
         }
 
         private void detalhes_Click(object sender, RoutedEventArgs e)

@@ -64,12 +64,11 @@ namespace JogoApp
                 if (usr.Senha == txtSenha.Password)
                 {
                     Autenticar();
-                    (new PagInicial()).Show();
+                    (new PagInicial(usr)).Show();
                 }
                 else MessageBox.Show("Senha Incorreta!");
             }
             else MessageBox.Show("Usuário Inválido!");
-            this.Close();
         }
 
         private void CadUsr_Click(object sender, RoutedEventArgs e)

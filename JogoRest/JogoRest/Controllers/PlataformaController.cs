@@ -7,13 +7,12 @@ using System.Web.Http;
 
 namespace JogoRest.Controllers
 {
-    public class GeneroController : ApiController
+    public class PlataformaController : ApiController
     {
-        // GET api/genero
-        public IEnumerable<Models.Genero> Get()
+        public IEnumerable<Models.Plataforma> Get()
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
-            var r = from g in dc.Generos select g;
+            var r = from p in dc.Plataformas select p;
             return r.ToList();
         }
     }

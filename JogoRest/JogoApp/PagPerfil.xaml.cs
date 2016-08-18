@@ -21,49 +21,43 @@ namespace JogoApp
     /// </summary>
     public partial class PagPerfil : Window
     {
-        public PagPerfil()
+        private static Models.Usuario u;
+
+        public PagPerfil(Models.Usuario usr)
         {
             InitializeComponent();
+            u = new Models.Usuario();
+            u = usr;
             Exibir();
         }
 
         private string ip = "http://localhost:52874/";
 
-        private async void Exibir()
+        private void Exibir()
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Usuario/");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
-            txtNome.Text = usr.Nome;
-            txtEmail.Text = usr.Email;
+            txtNome.Text = u.Nome;
+            txtEmail.Text = u.Email;
         }
 
         private void btnAtualizar_Click(object sender, RoutedEventArgs e)
         {
-            (new AtualizarUsr()).Show();
-        }
-
-        private void FecharJanelas()
-        {
-            foreach (Window w in Application.Current.Windows)
-            {
-                w.Close();
-            }
+            (new AtualizarUsr(u)).Show();
         }
 
         private async void Deletar()
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Usuario/");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
-            await httpClient.DeleteAsync("/api/Usuario/" + usr.Id);
+            await httpClient.DeleteAsync("/api/Usuario/" + u.Id);
             MessageBox.Show("Deletado com sucesso!");
+        }
+
+        private void FecharJanelas()
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.Title != "Rede de Jogos" && w.Title != "") w.Close();
+            }
         }
 
         private void btnDeletar_Click(object sender, RoutedEventArgs e)

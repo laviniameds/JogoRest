@@ -29,7 +29,8 @@ namespace JogoApp
             jogo = new Models.Jogo();
             jogo = j;
             PopularPag();
-            SetGenero(j.Id);
+            SetGenero(j.IdGenero);
+            SetPlataforma(j.Id);
         }
 
         private void PopularPag()
@@ -40,21 +41,39 @@ namespace JogoApp
             lblMedia.Content = jogo.NotaMedia;
             lblDesenvolvedora.Content = jogo.Desenvolvedora;
             lblNomeJogo.Content = jogo.Nome;
-            //lblPlataforma.Content = jogo.
-            //lblGenero.Content = jogo.
-
         }
 
         private string ip = "http://localhost:52874/";
 
-        private async void SetGenero(int IdJogo)
+        private async void SetGenero(int IdGenero)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Genero/" + IdJogo);
+            var response = await httpClient.GetAsync("/api/Genero/");
             var str = response.Content.ReadAsStringAsync().Result;
-            Models.Genero g = JsonConvert.DeserializeObject<Models.Genero>(str);
+            List<Models.Genero> obj = JsonConvert.DeserializeObject<List<Models.Genero>>(str);
+            Models.Genero g = obj.Find(x => x.Id == IdGenero);
             lblGenero.Content = g.Descricao;
+        }
+
+        private async void SetPlataforma(int idJogo)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Plataforma/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            var response2 = await httpClient.GetAsync("/api/PlataformaJogo/");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.Plataforma> obj = JsonConvert.DeserializeObject<List<Models.Plataforma>>(str);
+            List<Models.PlataformaJogo> obj2 = JsonConvert.DeserializeObject<List<Models.PlataformaJogo>>(str2);
+            foreach (Models.PlataformaJogo pj in obj2)
+            {
+                if (pj.IdJogo == idJogo)
+                {
+                    Models.Plataforma p = obj.Find(x => x.Id == pj.IdPlataforma);
+                    lbPlataforma.Items.Add(p.Descricao);
+                }
+            }
         }
     }
 }
