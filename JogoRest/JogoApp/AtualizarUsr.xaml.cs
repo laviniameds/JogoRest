@@ -21,10 +21,14 @@ namespace JogoApp
     /// </summary>
     public partial class AtualizarUsr : Window
     {
-        public AtualizarUsr()
+        public AtualizarUsr(Models.Usuario usr)
         {
             InitializeComponent();
+            u = new Models.Usuario();
+            u = usr;
         }
+
+        private static Models.Usuario u;
 
         private string ip = "http://localhost:52874/";
 
@@ -32,14 +36,10 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Usuario/");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
             Models.Usuario usr2 = new Models.Usuario
             {
-                Id = usr.Id,
-                Nome = usr.Nome,
+                Id = u.Id,
+                Nome = u.Nome,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Password,
                 EstaAutenticado = true,
@@ -51,10 +51,18 @@ namespace JogoApp
             MessageBox.Show("Atualizado com sucesso!");
         }
 
+        private void FecharJanelas()
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.Title != "Rede de Jogos" && w.Title != "") w.Close();
+            }
+        }
+
         private void btnAtualizar_Click(object sender, RoutedEventArgs e)
         {
             Atualizar();
-            this.Close();
+            FecharJanelas();
         }
     }
 }
