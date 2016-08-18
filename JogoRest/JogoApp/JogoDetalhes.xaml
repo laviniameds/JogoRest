@@ -8,15 +8,15 @@
         Title="JogoDetalhes" Height="651.016" Width="438.8">
     <Grid>
         <Image x:Name="img" HorizontalAlignment="Left" Height="170" Margin="34,62,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label1" Content="Nota Média:" HorizontalAlignment="Left" Margin="163,95,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Nota Média:" HorizontalAlignment="Left" Margin="164,95,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblMedia" Content="Media" HorizontalAlignment="Left" Margin="243,95,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="lbComentarios" HorizontalAlignment="Left" Height="211" Margin="34,389,0,0" VerticalAlignment="Top" Width="373" BorderBrush="#FF72D0F9" BorderThickness="1,0"/>
         <Label x:Name="label2" Content="Ano:" HorizontalAlignment="Left" Margin="164,62,0,0" VerticalAlignment="Top" Width="37"/>
         <Label x:Name="lblAno" Content="Ano" HorizontalAlignment="Left" Margin="206,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.604,0.664"/>
-        <Label x:Name="label" Content="Desenvolvedora:" HorizontalAlignment="Left" Margin="163,136,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Desenvolvedora:" HorizontalAlignment="Left" Margin="164,136,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblDesenvolvedora" Content="Desenvolvedora" HorizontalAlignment="Left" Margin="266,136,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label3" Content="Gênero:" HorizontalAlignment="Left" Margin="166,206,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label4" Content="Plataforma:" HorizontalAlignment="Left" Margin="164,174,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Gênero:" HorizontalAlignment="Left" Margin="164,206,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Plataforma:" HorizontalAlignment="Left" Margin="164,175,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="tbSinopse" HorizontalAlignment="Left" Margin="164,246,0,0" TextWrapping="Wrap" Text="Sinopse" VerticalAlignment="Top" Height="98" Width="243"/>
         <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="1" Margin="10,35,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="411"/>
         <Label x:Name="lblNomeJogo" Content="Nome do Jogo" HorizontalAlignment="Left" Margin="137,14,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" FontSize="24" Width="167" Background="White"/>
