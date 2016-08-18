@@ -29,7 +29,7 @@ namespace JogoApp
             jogo = new Models.Jogo();
             jogo = j;
             PopularPag();
-            SetGenero(j.Id);
+            SetGenero(j.IdGenero);
         }
 
         private void PopularPag()
@@ -41,19 +41,18 @@ namespace JogoApp
             lblDesenvolvedora.Content = jogo.Desenvolvedora;
             lblNomeJogo.Content = jogo.Nome;
             //lblPlataforma.Content = jogo.
-            //lblGenero.Content = jogo.
-
         }
 
         private string ip = "http://localhost:52874/";
 
-        private async void SetGenero(int IdJogo)
+        private async void SetGenero(int IdGenero)
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Genero/" + IdJogo);
+            var response = await httpClient.GetAsync("/api/Genero/" + IdGenero);
             var str = response.Content.ReadAsStringAsync().Result;
-            Models.Genero g = JsonConvert.DeserializeObject<Models.Genero>(str);
+            List<Models.Genero> obj = JsonConvert.DeserializeObject<List<Models.Genero>>(str);
+            Models.Genero g = obj.Find(x => x.Id == IdGenero);
             lblGenero.Content = g.Descricao;
         }
     }
