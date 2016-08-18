@@ -20,6 +20,14 @@
       <Column Name="NotaMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Imagem" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Genero_Jogo" Member="Genero" AccessModifier="Internal" ThisKey="IdGenero" OtherKey="Id" Type="Genero" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Genero" Member="Generos">
+    <Type Name="Genero">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Genero_Jogo" Member="Jogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdGenero" Type="Jogo" />
     </Type>
   </Table>
 </Database>

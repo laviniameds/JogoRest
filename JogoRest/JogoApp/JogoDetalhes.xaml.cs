@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +29,7 @@ namespace JogoApp
             jogo = new Models.Jogo();
             jogo = j;
             PopularPag();
+            SetGenero(j.Id);
         }
 
         private void PopularPag()
@@ -36,6 +39,18 @@ namespace JogoApp
             lblAno.Content = jogo.Ano;
             lblMedia.Content = jogo.NotaMedia;
             lblDesenvolvedora.Content = jogo.Desenvolvedora;
+        }
+
+        private string ip = "http://localhost:52874/";
+
+        private async void SetGenero(int IdJogo)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Genero/" + IdJogo);
+            var str = response.Content.ReadAsStringAsync().Result;
+            Models.Genero g = JsonConvert.DeserializeObject<Models.Genero>(str);
+            lblGenero.Content = g.Descricao;
         }
     }
 }

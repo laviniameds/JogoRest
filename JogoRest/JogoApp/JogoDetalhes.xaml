@@ -18,6 +18,7 @@
         <Label x:Name="label3" Content="Gênero:" HorizontalAlignment="Left" Margin="281,127,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label4" Content="Plataforma:" HorizontalAlignment="Left" Margin="281,145,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="tbSinopse" HorizontalAlignment="Left" Margin="149,24,0,0" TextWrapping="Wrap" Text="Sinopse" VerticalAlignment="Top" Height="100" Width="229"/>
+        <Label x:Name="lblGenero" Content="Genero" HorizontalAlignment="Left" Margin="332,127,0,0" VerticalAlignment="Top" Width="46"/>
 
     </Grid>
 </Window>

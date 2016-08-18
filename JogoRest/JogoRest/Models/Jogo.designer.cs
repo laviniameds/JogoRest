@@ -36,6 +36,9 @@ namespace JogoRest.Models
     partial void InsertJogo(Jogo instance);
     partial void UpdateJogo(Jogo instance);
     partial void DeleteJogo(Jogo instance);
+    partial void InsertGenero(Genero instance);
+    partial void UpdateGenero(Genero instance);
+    partial void DeleteGenero(Genero instance);
     #endregion
 		
 		public JogoDataContext() : 
@@ -81,6 +84,14 @@ namespace JogoRest.Models
 			get
 			{
 				return this.GetTable<Jogo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Genero> Generos
+		{
+			get
+			{
+				return this.GetTable<Genero>();
 			}
 		}
 	}
@@ -289,6 +300,8 @@ namespace JogoRest.Models
 		
 		private int _IdGenero;
 		
+		private EntityRef<Genero> _Genero;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -313,6 +326,7 @@ namespace JogoRest.Models
 		
 		public Jogo()
 		{
+			this._Genero = default(EntityRef<Genero>);
 			OnCreated();
 		}
 		
@@ -467,11 +481,49 @@ namespace JogoRest.Models
 			{
 				if ((this._IdGenero != value))
 				{
+					if (this._Genero.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdGeneroChanging(value);
 					this.SendPropertyChanging();
 					this._IdGenero = value;
 					this.SendPropertyChanged("IdGenero");
 					this.OnIdGeneroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Genero", ThisKey="IdGenero", OtherKey="Id", IsForeignKey=true)]
+		internal Genero Genero
+		{
+			get
+			{
+				return this._Genero.Entity;
+			}
+			set
+			{
+				Genero previousValue = this._Genero.Entity;
+				if (((previousValue != value) 
+							|| (this._Genero.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Genero.Entity = null;
+						previousValue.Jogos.Remove(this);
+					}
+					this._Genero.Entity = value;
+					if ((value != null))
+					{
+						value.Jogos.Add(this);
+						this._IdGenero = value.Id;
+					}
+					else
+					{
+						this._IdGenero = default(int);
+					}
+					this.SendPropertyChanged("Genero");
 				}
 			}
 		}
@@ -494,6 +546,120 @@ namespace JogoRest.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Genero")]
+	public partial class Genero : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Descricao;
+		
+		private EntitySet<Jogo> _Jogos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescricaoChanging(string value);
+    partial void OnDescricaoChanged();
+    #endregion
+		
+		public Genero()
+		{
+			this._Jogos = new EntitySet<Jogo>(new Action<Jogo>(this.attach_Jogos), new Action<Jogo>(this.detach_Jogos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Descricao
+		{
+			get
+			{
+				return this._Descricao;
+			}
+			set
+			{
+				if ((this._Descricao != value))
+				{
+					this.OnDescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._Descricao = value;
+					this.SendPropertyChanged("Descricao");
+					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Jogos", ThisKey="Id", OtherKey="IdGenero")]
+		internal EntitySet<Jogo> Jogos
+		{
+			get
+			{
+				return this._Jogos;
+			}
+			set
+			{
+				this._Jogos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Jogos(Jogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Genero = this;
+		}
+		
+		private void detach_Jogos(Jogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Genero = null;
 		}
 	}
 }
