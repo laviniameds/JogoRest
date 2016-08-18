@@ -39,6 +39,12 @@ namespace JogoRest.Models
     partial void InsertGenero(Genero instance);
     partial void UpdateGenero(Genero instance);
     partial void DeleteGenero(Genero instance);
+    partial void InsertPlataforma(Plataforma instance);
+    partial void UpdatePlataforma(Plataforma instance);
+    partial void DeletePlataforma(Plataforma instance);
+    partial void InsertPlataformaJogo(PlataformaJogo instance);
+    partial void UpdatePlataformaJogo(PlataformaJogo instance);
+    partial void DeletePlataformaJogo(PlataformaJogo instance);
     #endregion
 		
 		public JogoDataContext() : 
@@ -92,6 +98,22 @@ namespace JogoRest.Models
 			get
 			{
 				return this.GetTable<Genero>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Plataforma> Plataformas
+		{
+			get
+			{
+				return this.GetTable<Plataforma>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PlataformaJogo> PlataformaJogos
+		{
+			get
+			{
+				return this.GetTable<PlataformaJogo>();
 			}
 		}
 	}
@@ -300,6 +322,8 @@ namespace JogoRest.Models
 		
 		private int _IdGenero;
 		
+		private EntitySet<PlataformaJogo> _PlataformaJogos;
+		
 		private EntityRef<Genero> _Genero;
 		
     #region Extensibility Method Definitions
@@ -326,6 +350,7 @@ namespace JogoRest.Models
 		
 		public Jogo()
 		{
+			this._PlataformaJogos = new EntitySet<PlataformaJogo>(new Action<PlataformaJogo>(this.attach_PlataformaJogos), new Action<PlataformaJogo>(this.detach_PlataformaJogos));
 			this._Genero = default(EntityRef<Genero>);
 			OnCreated();
 		}
@@ -494,6 +519,19 @@ namespace JogoRest.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_PlataformaJogo", Storage="_PlataformaJogos", ThisKey="Id", OtherKey="IdJogo")]
+		internal EntitySet<PlataformaJogo> PlataformaJogos
+		{
+			get
+			{
+				return this._PlataformaJogos;
+			}
+			set
+			{
+				this._PlataformaJogos.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Genero", ThisKey="IdGenero", OtherKey="Id", IsForeignKey=true)]
 		internal Genero Genero
 		{
@@ -546,6 +584,18 @@ namespace JogoRest.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_PlataformaJogos(PlataformaJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = this;
+		}
+		
+		private void detach_PlataformaJogos(PlataformaJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = null;
 		}
 	}
 	
@@ -660,6 +710,288 @@ namespace JogoRest.Models
 		{
 			this.SendPropertyChanging();
 			entity.Genero = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Plataforma")]
+	public partial class Plataforma : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Descricao;
+		
+		private EntitySet<PlataformaJogo> _PlataformaJogos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescricaoChanging(string value);
+    partial void OnDescricaoChanged();
+    #endregion
+		
+		public Plataforma()
+		{
+			this._PlataformaJogos = new EntitySet<PlataformaJogo>(new Action<PlataformaJogo>(this.attach_PlataformaJogos), new Action<PlataformaJogo>(this.detach_PlataformaJogos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Descricao
+		{
+			get
+			{
+				return this._Descricao;
+			}
+			set
+			{
+				if ((this._Descricao != value))
+				{
+					this.OnDescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._Descricao = value;
+					this.SendPropertyChanged("Descricao");
+					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Plataforma_PlataformaJogo", Storage="_PlataformaJogos", ThisKey="Id", OtherKey="IdPlataforma")]
+		internal EntitySet<PlataformaJogo> PlataformaJogos
+		{
+			get
+			{
+				return this._PlataformaJogos;
+			}
+			set
+			{
+				this._PlataformaJogos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_PlataformaJogos(PlataformaJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Plataforma = this;
+		}
+		
+		private void detach_PlataformaJogos(PlataformaJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Plataforma = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PlataformaJogo")]
+	public partial class PlataformaJogo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdJogo;
+		
+		private int _IdPlataforma;
+		
+		private EntityRef<Jogo> _Jogo;
+		
+		private EntityRef<Plataforma> _Plataforma;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdJogoChanging(int value);
+    partial void OnIdJogoChanged();
+    partial void OnIdPlataformaChanging(int value);
+    partial void OnIdPlataformaChanged();
+    #endregion
+		
+		public PlataformaJogo()
+		{
+			this._Jogo = default(EntityRef<Jogo>);
+			this._Plataforma = default(EntityRef<Plataforma>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdJogo", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int IdJogo
+		{
+			get
+			{
+				return this._IdJogo;
+			}
+			set
+			{
+				if ((this._IdJogo != value))
+				{
+					if (this._Jogo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdJogoChanging(value);
+					this.SendPropertyChanging();
+					this._IdJogo = value;
+					this.SendPropertyChanged("IdJogo");
+					this.OnIdJogoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPlataforma", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int IdPlataforma
+		{
+			get
+			{
+				return this._IdPlataforma;
+			}
+			set
+			{
+				if ((this._IdPlataforma != value))
+				{
+					if (this._Plataforma.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdPlataformaChanging(value);
+					this.SendPropertyChanging();
+					this._IdPlataforma = value;
+					this.SendPropertyChanged("IdPlataforma");
+					this.OnIdPlataformaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_PlataformaJogo", Storage="_Jogo", ThisKey="IdJogo", OtherKey="Id", IsForeignKey=true)]
+		internal Jogo Jogo
+		{
+			get
+			{
+				return this._Jogo.Entity;
+			}
+			set
+			{
+				Jogo previousValue = this._Jogo.Entity;
+				if (((previousValue != value) 
+							|| (this._Jogo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Jogo.Entity = null;
+						previousValue.PlataformaJogos.Remove(this);
+					}
+					this._Jogo.Entity = value;
+					if ((value != null))
+					{
+						value.PlataformaJogos.Add(this);
+						this._IdJogo = value.Id;
+					}
+					else
+					{
+						this._IdJogo = default(int);
+					}
+					this.SendPropertyChanged("Jogo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Plataforma_PlataformaJogo", Storage="_Plataforma", ThisKey="IdPlataforma", OtherKey="Id", IsForeignKey=true)]
+		internal Plataforma Plataforma
+		{
+			get
+			{
+				return this._Plataforma.Entity;
+			}
+			set
+			{
+				Plataforma previousValue = this._Plataforma.Entity;
+				if (((previousValue != value) 
+							|| (this._Plataforma.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Plataforma.Entity = null;
+						previousValue.PlataformaJogos.Remove(this);
+					}
+					this._Plataforma.Entity = value;
+					if ((value != null))
+					{
+						value.PlataformaJogos.Add(this);
+						this._IdPlataforma = value.Id;
+					}
+					else
+					{
+						this._IdPlataforma = default(int);
+					}
+					this.SendPropertyChanged("Plataforma");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

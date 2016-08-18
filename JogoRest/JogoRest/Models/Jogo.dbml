@@ -20,6 +20,7 @@
       <Column Name="NotaMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Imagem" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Jogo_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="PlataformaJogo" />
       <Association Name="Genero_Jogo" Member="Genero" AccessModifier="Internal" ThisKey="IdGenero" OtherKey="Id" Type="Genero" IsForeignKey="true" />
     </Type>
   </Table>
@@ -28,6 +29,21 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Descricao" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Genero_Jogo" Member="Jogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdGenero" Type="Jogo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Plataforma" Member="Plataformas">
+    <Type Name="Plataforma">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Plataforma_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdPlataforma" Type="PlataformaJogo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlataformaJogo" Member="PlataformaJogos">
+    <Type Name="PlataformaJogo">
+      <Column Name="IdJogo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdPlataforma" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Jogo_PlataformaJogo" Member="Jogo" AccessModifier="Internal" ThisKey="IdJogo" OtherKey="Id" Type="Jogo" IsForeignKey="true" />
+      <Association Name="Plataforma_PlataformaJogo" Member="Plataforma" AccessModifier="Internal" ThisKey="IdPlataforma" OtherKey="Id" Type="Plataforma" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

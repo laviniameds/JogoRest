@@ -119,6 +119,8 @@
   <ItemGroup>
     <Compile Include="Models\Genero.cs" />
     <Compile Include="Models\Jogo.cs" />
+    <Compile Include="Models\Plataforma.cs" />
+    <Compile Include="Models\PlataformaJogo.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="PagInicial.xaml.cs">
       <DependentUpon>PagInicial.xaml</DependentUpon>
