@@ -20,7 +20,7 @@
         <elementListCompartment Id="0611e7bc-d920-4677-ba0b-e334bf744cac" absoluteBounds="1.0150000000000001, 1.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 1.72199625651042); (3.5 : 1.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3 : 1.72199625651042); (3.5 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/Genero/Genero_Jogo" />
       <nodes>
         <classShapeMoniker Id="b34b7724-87fc-4e41-bf3d-6c6f5910acf4" />
@@ -39,14 +39,14 @@
         <elementListCompartment Id="26d65dcc-936d-490d-ba2f-69e582a30d29" absoluteBounds="6.39, 4.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 2.17390055338542); (7.375 : 2.17390055338542); (7.375 : 3.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 2.17390055338542); (7.375 : 2.17390055338542); (7.375 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_PlataformaJogo" />
       <nodes>
         <classShapeMoniker Id="a13a966e-e4c8-46fe-8121-7ff6cec642e7" />
         <classShapeMoniker Id="e72b239b-1851-4f6b-8e65-ba842893f1a3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.375 : 4.34699625651042); (6.375 : 4.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.375 : 4.34699625651042); (6.375 : 4.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/Plataforma/Plataforma_PlataformaJogo" />
       <nodes>
         <classShapeMoniker Id="3d058d92-590d-4c3a-b239-e453a9855f2e" />
