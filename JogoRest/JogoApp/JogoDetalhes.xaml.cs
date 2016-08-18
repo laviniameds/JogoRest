@@ -39,6 +39,10 @@ namespace JogoApp
             lblAno.Content = jogo.Ano;
             lblMedia.Content = jogo.NotaMedia;
             lblDesenvolvedora.Content = jogo.Desenvolvedora;
+            lblNomeJogo.Content = jogo.Nome;
+            //lblPlataforma.Content = jogo.
+            //lblGenero.Content = jogo.
+
         }
 
         private string ip = "http://localhost:52874/";

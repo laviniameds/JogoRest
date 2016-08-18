@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="Rede de Jogos" Height="287.357" Width="343.71">
     <Grid>
-        <Label x:Name="lblNome" Content="Usuário:" HorizontalAlignment="Left" Margin="82,17,0,0" VerticalAlignment="Top" Width="53"/>
-        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="26" Margin="137,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
-        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="82,59,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="182,107,0,0" VerticalAlignment="Top" Width="75" Click="btnEntrar_Click" Background="White" BorderBrush="#FF72D0F9"/>
-        <Button x:Name="CadUsr" Content="Cadastre-se!" HorizontalAlignment="Left" Margin="82,167,0,0" VerticalAlignment="Top" Width="176" Background="#FF72D0F9" BorderThickness="0" Height="35" Foreground="White" FontSize="18" Click="CadUsr_Click"/>
-        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="137,59,0,0" VerticalAlignment="Top" Width="120" Height="26" BorderThickness="0,0,0,1"/>
+        <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="1" Margin="10,29,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="316"/>
+
+        <Label x:Name="lblNome" Content="Usuário:" HorizontalAlignment="Left" Margin="82,73,0,0" VerticalAlignment="Top" Width="53"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="26" Margin="137,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="82,115,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Left" Margin="182,157,0,0" VerticalAlignment="Top" Width="75" Click="btnEntrar_Click" Background="White" BorderBrush="#FF72D0F9"/>
+        <Button x:Name="CadUsr" Content="Cadastre-se!" HorizontalAlignment="Left" Margin="82,204,0,0" VerticalAlignment="Top" Width="175" Background="#FF72D0F9" BorderThickness="0" Height="35" Foreground="White" FontSize="18" Click="CadUsr_Click"/>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="137,109,0,0" VerticalAlignment="Top" Width="120" Height="26" BorderThickness="0,0,0,1"/>
+        <Label x:Name="labelTitle" Content="Rede de Jogos" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" FontSize="24" Width="163" Background="White"/>
+        <Label x:Name="labelTitle_Copy" Content="Login" HorizontalAlignment="Left" Margin="145,47,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" Width="47" Background="White"/>
 
     </Grid>
 </Window>

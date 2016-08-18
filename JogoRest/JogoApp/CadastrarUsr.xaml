@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="CadastrarUsr" Height="300" Width="300">
     <Grid>
-        <Label x:Name="lblNome" Content="Nome:" HorizontalAlignment="Left" Margin="53,42,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="26" Margin="108,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
-        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="53,82,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnCad" Content="Cadastrar" HorizontalAlignment="Left" Margin="155,166,0,0" VerticalAlignment="Top" Width="75" Click="btnCad_Click" Background="White" BorderBrush="#FF72D0F9"/>
-        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,121,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="26" Margin="110,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
-        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="108,82,0,0" VerticalAlignment="Top" Width="120" Height="26" BorderThickness="0,0,0,1"/>
+        <Label x:Name="lblNome" Content="Nome:" HorizontalAlignment="Left" Margin="53,78,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNome" HorizontalAlignment="Left" Height="26" Margin="108,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <Label x:Name="lblSenha" Content="Senha:" HorizontalAlignment="Left" Margin="53,128,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnCad" Content="Cadastrar" HorizontalAlignment="Left" Margin="155,226,0,0" VerticalAlignment="Top" Width="75" Click="btnCad_Click" Background="White" BorderBrush="#FF72D0F9"/>
+        <Label x:Name="lblEmail" Content="E-mail:" HorizontalAlignment="Left" Margin="53,178,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="26" Margin="110,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="108,122,0,0" VerticalAlignment="Top" Width="120" Height="26" BorderThickness="0,0,0,1"/>
+        <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="1" Margin="10,29,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="272"/>
+        <Label x:Name="labelTitle" Content="Rede de Jogos" HorizontalAlignment="Left" Margin="70,10,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" FontSize="24" Width="162" Background="White"/>
+        <Label x:Name="labelTitle_Copy" Content="Cadastro" HorizontalAlignment="Left" Margin="110,47,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" Width="62" Background="White"/>
 
     </Grid>
 </Window>
