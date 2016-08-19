@@ -52,6 +52,34 @@ namespace JogoApp
             MessageBox.Show("Deletado com sucesso!");
         }
 
+        private async void Sair()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/Usuario/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
+            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
+            Models.Usuario usr2 = new Models.Usuario
+            {
+                Nome = usr.Nome,
+                Id = usr.Id,
+                Email = usr.Email,
+                Senha = usr.Senha,
+                Imagem = "",
+                EstaAutenticado = false
+            };
+            string s = "=" + JsonConvert.SerializeObject(usr2);
+            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            await httpClient.PutAsync("/api/Usuario/" + usr2.Id, content);
+        }
+
+        private void btnSair_Click(object sender, RoutedEventArgs e)
+        {
+            Sair();
+            FecharJanelas();
+        }
+
         private void FecharJanelas()
         {
             foreach (Window w in Application.Current.Windows)
