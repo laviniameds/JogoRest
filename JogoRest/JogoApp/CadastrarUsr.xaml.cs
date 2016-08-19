@@ -50,7 +50,7 @@ namespace JogoApp
                 Nome = txtNome.Text,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Password,
-                Imagem = img.Source.ToString(),
+               // Imagem = img.Source.ToString(),
                 EstaAutenticado = false
             };
             List<Models.Usuario> list = new List<Models.Usuario>();

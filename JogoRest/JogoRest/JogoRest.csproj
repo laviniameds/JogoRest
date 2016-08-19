@@ -211,6 +211,7 @@
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JogoController.cs" />
+    <Compile Include="Controllers\MeuJogoController.cs" />
     <Compile Include="Controllers\PlataformaController.cs" />
     <Compile Include="Controllers\PlataformaJogoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />

@@ -45,10 +45,13 @@ namespace JogoRest.Models
     partial void InsertPlataformaJogo(PlataformaJogo instance);
     partial void UpdatePlataformaJogo(PlataformaJogo instance);
     partial void DeletePlataformaJogo(PlataformaJogo instance);
+    partial void InsertMeuJogo(MeuJogo instance);
+    partial void UpdateMeuJogo(MeuJogo instance);
+    partial void DeleteMeuJogo(MeuJogo instance);
     #endregion
 		
 		public JogoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -116,6 +119,14 @@ namespace JogoRest.Models
 				return this.GetTable<PlataformaJogo>();
 			}
 		}
+		
+		public System.Data.Linq.Table<MeuJogo> MeuJogos
+		{
+			get
+			{
+				return this.GetTable<MeuJogo>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario")]
@@ -135,6 +146,8 @@ namespace JogoRest.Models
 		private string _Imagem;
 		
 		private bool _EstaAutenticado;
+		
+		private EntitySet<MeuJogo> _MeuJogos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -156,6 +169,7 @@ namespace JogoRest.Models
 		
 		public Usuario()
 		{
+			this._MeuJogos = new EntitySet<MeuJogo>(new Action<MeuJogo>(this.attach_MeuJogos), new Action<MeuJogo>(this.detach_MeuJogos));
 			OnCreated();
 		}
 		
@@ -279,6 +293,19 @@ namespace JogoRest.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_MeuJogo", Storage="_MeuJogos", ThisKey="Id", OtherKey="IdUsuario")]
+		public EntitySet<MeuJogo> MeuJogos
+		{
+			get
+			{
+				return this._MeuJogos;
+			}
+			set
+			{
+				this._MeuJogos.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -297,6 +324,18 @@ namespace JogoRest.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_MeuJogos(MeuJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_MeuJogos(MeuJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
 		}
 	}
 	
@@ -323,6 +362,8 @@ namespace JogoRest.Models
 		private int _IdGenero;
 		
 		private EntitySet<PlataformaJogo> _PlataformaJogos;
+		
+		private EntitySet<MeuJogo> _MeuJogos;
 		
 		private EntityRef<Genero> _Genero;
 		
@@ -351,6 +392,7 @@ namespace JogoRest.Models
 		public Jogo()
 		{
 			this._PlataformaJogos = new EntitySet<PlataformaJogo>(new Action<PlataformaJogo>(this.attach_PlataformaJogos), new Action<PlataformaJogo>(this.detach_PlataformaJogos));
+			this._MeuJogos = new EntitySet<MeuJogo>(new Action<MeuJogo>(this.attach_MeuJogos), new Action<MeuJogo>(this.detach_MeuJogos));
 			this._Genero = default(EntityRef<Genero>);
 			OnCreated();
 		}
@@ -532,6 +574,19 @@ namespace JogoRest.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_MeuJogo", Storage="_MeuJogos", ThisKey="Id", OtherKey="IdJogo")]
+		public EntitySet<MeuJogo> MeuJogos
+		{
+			get
+			{
+				return this._MeuJogos;
+			}
+			set
+			{
+				this._MeuJogos.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Genero", ThisKey="IdGenero", OtherKey="Id", IsForeignKey=true)]
 		internal Genero Genero
 		{
@@ -593,6 +648,18 @@ namespace JogoRest.Models
 		}
 		
 		private void detach_PlataformaJogos(PlataformaJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = null;
+		}
+		
+		private void attach_MeuJogos(MeuJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = this;
+		}
+		
+		private void detach_MeuJogos(MeuJogo entity)
 		{
 			this.SendPropertyChanging();
 			entity.Jogo = null;
@@ -970,6 +1037,270 @@ namespace JogoRest.Models
 						this._IdPlataforma = default(int);
 					}
 					this.SendPropertyChanged("Plataforma");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MeuJogo")]
+	public partial class MeuJogo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Status;
+		
+		private string _Comentario;
+		
+		private string _Classificacao;
+		
+		private int _IdJogo;
+		
+		private int _IdUsuario;
+		
+		private EntityRef<Jogo> _Jogo;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnComentarioChanging(string value);
+    partial void OnComentarioChanged();
+    partial void OnClassificacaoChanging(string value);
+    partial void OnClassificacaoChanged();
+    partial void OnIdJogoChanging(int value);
+    partial void OnIdJogoChanged();
+    partial void OnIdUsuarioChanging(int value);
+    partial void OnIdUsuarioChanged();
+    #endregion
+		
+		public MeuJogo()
+		{
+			this._Jogo = default(EntityRef<Jogo>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comentario", DbType="VarChar(MAX)")]
+		public string Comentario
+		{
+			get
+			{
+				return this._Comentario;
+			}
+			set
+			{
+				if ((this._Comentario != value))
+				{
+					this.OnComentarioChanging(value);
+					this.SendPropertyChanging();
+					this._Comentario = value;
+					this.SendPropertyChanged("Comentario");
+					this.OnComentarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Classificacao", DbType="VarChar(50)")]
+		public string Classificacao
+		{
+			get
+			{
+				return this._Classificacao;
+			}
+			set
+			{
+				if ((this._Classificacao != value))
+				{
+					this.OnClassificacaoChanging(value);
+					this.SendPropertyChanging();
+					this._Classificacao = value;
+					this.SendPropertyChanged("Classificacao");
+					this.OnClassificacaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdJogo", DbType="Int NOT NULL")]
+		public int IdJogo
+		{
+			get
+			{
+				return this._IdJogo;
+			}
+			set
+			{
+				if ((this._IdJogo != value))
+				{
+					if (this._Jogo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdJogoChanging(value);
+					this.SendPropertyChanging();
+					this._IdJogo = value;
+					this.SendPropertyChanged("IdJogo");
+					this.OnIdJogoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsuario", DbType="Int NOT NULL")]
+		public int IdUsuario
+		{
+			get
+			{
+				return this._IdUsuario;
+			}
+			set
+			{
+				if ((this._IdUsuario != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdUsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._IdUsuario = value;
+					this.SendPropertyChanged("IdUsuario");
+					this.OnIdUsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_MeuJogo", Storage="_Jogo", ThisKey="IdJogo", OtherKey="Id", IsForeignKey=true)]
+		public Jogo Jogo
+		{
+			get
+			{
+				return this._Jogo.Entity;
+			}
+			set
+			{
+				Jogo previousValue = this._Jogo.Entity;
+				if (((previousValue != value) 
+							|| (this._Jogo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Jogo.Entity = null;
+						previousValue.MeuJogos.Remove(this);
+					}
+					this._Jogo.Entity = value;
+					if ((value != null))
+					{
+						value.MeuJogos.Add(this);
+						this._IdJogo = value.Id;
+					}
+					else
+					{
+						this._IdJogo = default(int);
+					}
+					this.SendPropertyChanged("Jogo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_MeuJogo", Storage="_Usuario", ThisKey="IdUsuario", OtherKey="Id", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.MeuJogos.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.MeuJogos.Add(this);
+						this._IdUsuario = value.Id;
+					}
+					else
+					{
+						this._IdUsuario = default(int);
+					}
+					this.SendPropertyChanged("Usuario");
 				}
 			}
 		}
