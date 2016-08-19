@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JogoApp"
         mc:Ignorable="d"
-        Title="JogoDetalhes" Height="651.016" Width="438.8">
+        Title="JogoDetalhes" Height="801.016" Width="438.8">
     <Grid>
         <Image x:Name="img" HorizontalAlignment="Left" Height="170" Margin="34,62,0,0" VerticalAlignment="Top" Width="118"/>
         <Label x:Name="label1" Content="Nota Média:" HorizontalAlignment="Left" Margin="164,86,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblMedia" Content="Media" HorizontalAlignment="Left" Margin="243,86,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lbComentarios" HorizontalAlignment="Left" Height="211" Margin="34,389,0,0" VerticalAlignment="Top" Width="373" BorderBrush="#FF72D0F9" BorderThickness="0"/>
+        <ListBox x:Name="lbComentarios" HorizontalAlignment="Left" Height="271" Margin="34,489,0,0" VerticalAlignment="Top" Width="373" BorderBrush="#FF72D0F9" BorderThickness="0"/>
         <Label x:Name="label2" Content="Ano:" HorizontalAlignment="Left" Margin="164,62,0,0" VerticalAlignment="Top" Width="37"/>
         <Label x:Name="lblAno" Content="Ano" HorizontalAlignment="Left" Margin="206,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.604,0.664"/>
         <Label x:Name="label" Content="Desenvolvedora:" HorizontalAlignment="Left" Margin="164,111,0,0" VerticalAlignment="Top"/>
@@ -22,10 +22,17 @@
         <Button x:Name="btnQueroJogar" Content="Quero Jogar" HorizontalAlignment="Left" Margin="34,248,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FF0CCD7E"/>
         <Button x:Name="btnJogando" Content="Jogando" HorizontalAlignment="Left" Margin="34,278,0,0" VerticalAlignment="Top" Width="118" BorderBrush="#FF72D0F9" Background="White"/>
         <Button x:Name="btnJaJoguei" Content="Já Joguei" HorizontalAlignment="Left" Margin="34,308,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FFE61616"/>
-        <Label x:Name="label5" Content="Comentários:" HorizontalAlignment="Left" Margin="34,352,0,0" VerticalAlignment="Top" Width="373" FontSize="18" BorderBrush="#FF72D0F9" BorderThickness="0,0,0,1"/>
+        <Label x:Name="label5" Content="Comentários:" HorizontalAlignment="Left" Margin="34,452,0,0" VerticalAlignment="Top" Width="373" FontSize="18" BorderBrush="#FF72D0F9" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="lbPlataforma" HorizontalAlignment="Left" Height="51" Margin="239,142,0,0" VerticalAlignment="Top" Width="121"/>
         <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="48" Stroke="Black" VerticalAlignment="Top" Width="431" StrokeThickness="0"/>
         <Label x:Name="lblNomeJogo" Content="Nome do Jogo" HorizontalAlignment="Left" Margin="134,5,0,0" VerticalAlignment="Top" FontFamily="Georgia" FontStyle="Italic" FontSize="24" Width="167" Background="#FF72D0F9" Foreground="White"/>
+        <Label x:Name="label6" Content="Avaliação" HorizontalAlignment="Left" Margin="34,349,0,0" VerticalAlignment="Top" Width="373" FontSize="18" BorderBrush="#FF72D0F9" BorderThickness="0,0,0,1"/>
+        <RadioButton x:Name="radioButton1" Content="1" HorizontalAlignment="Left" Margin="34,407,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton2" Content="2" HorizontalAlignment="Left" Margin="96,407,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton3" Content="3" HorizontalAlignment="Left" Margin="154,407,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton4" Content="4" HorizontalAlignment="Left" Margin="213,407,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="radioButton5" Content="5" HorizontalAlignment="Left" Margin="276,407,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAvaliar" Content="Avaliar" HorizontalAlignment="Left" Margin="332,404,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="#FF72D0F9" Click="btnAvaliar_Click"/>
 
     </Grid>
 </Window>
