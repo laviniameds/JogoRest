@@ -59,7 +59,7 @@ namespace JogoApp
 
         private void btnMeusJogos_Click(object sender, RoutedEventArgs e)
         {
-            (new MeusJogosPerfil()).Show();
+            (new MeusJogosPerfil(u)).Show();
         }
     }
 }

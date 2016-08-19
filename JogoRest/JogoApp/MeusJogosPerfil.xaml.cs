@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace JogoApp
 {
@@ -22,6 +24,25 @@ namespace JogoApp
         public MeusJogosPerfil()
         {
             InitializeComponent();
+        }
+
+        public MeusJogosPerfil(Models.Usuario u)
+        {
+            InitializeComponent();
+            PopulateGrid(u);
+        }
+
+        private string ip = "http://localhost:52874/";
+
+        private async void PopulateGrid(Models.Usuario u)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);            
+            var response = await httpClient.GetAsync("/api/MeuJogo/");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            List<Models.MeuJogo> mj = obj.FindAll(x => x.IdUsuario == u.Id);
+            dataGridMeusJogos.ItemsSource = mj;
         }
     }
 }
