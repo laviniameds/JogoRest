@@ -53,8 +53,7 @@ namespace JogoApp
             object myobject = ((Button)sender).CommandParameter;
             Models.Jogo j = new Models.Jogo();
             if (myobject is Models.Jogo) { j = (Models.Jogo)myobject; }
-            JogoDetalhes jogo = new JogoDetalhes(j);
-            jogo.Show();
+            (new JogoDetalhes(j, u)).Show();
         }
 
         private void btnMeusJogos_Click(object sender, RoutedEventArgs e)

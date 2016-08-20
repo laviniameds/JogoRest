@@ -51,7 +51,7 @@ namespace JogoRest.Models
     #endregion
 		
 		public JogoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString1"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["JogosBDConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -294,7 +294,7 @@ namespace JogoRest.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_MeuJogo", Storage="_MeuJogos", ThisKey="Id", OtherKey="IdUsuario")]
-		public EntitySet<MeuJogo> MeuJogos
+		internal EntitySet<MeuJogo> MeuJogos
 		{
 			get
 			{
@@ -575,7 +575,7 @@ namespace JogoRest.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_MeuJogo", Storage="_MeuJogos", ThisKey="Id", OtherKey="IdJogo")]
-		public EntitySet<MeuJogo> MeuJogos
+		internal EntitySet<MeuJogo> MeuJogos
 		{
 			get
 			{
@@ -1238,7 +1238,7 @@ namespace JogoRest.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_MeuJogo", Storage="_Jogo", ThisKey="IdJogo", OtherKey="Id", IsForeignKey=true)]
-		public Jogo Jogo
+		internal Jogo Jogo
 		{
 			get
 			{
@@ -1272,7 +1272,7 @@ namespace JogoRest.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_MeuJogo", Storage="_Usuario", ThisKey="IdUsuario", OtherKey="Id", IsForeignKey=true)]
-		public Usuario Usuario
+		internal Usuario Usuario
 		{
 			get
 			{

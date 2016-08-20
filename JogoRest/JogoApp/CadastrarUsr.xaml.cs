@@ -50,11 +50,11 @@ namespace JogoApp
                 Nome = txtNome.Text,
                 Email = txtEmail.Text,
                 Senha = txtSenha.Password,
-               // Imagem = img.Source.ToString(),
+                Imagem = "",
                 EstaAutenticado = false
             };
             List<Models.Usuario> list = new List<Models.Usuario>();
-            ////list.Add(u);
+            list.Add(u);
             string s = "=" + JsonConvert.SerializeObject(list);
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             await httpClient.PostAsync("/api/Usuario/", content);

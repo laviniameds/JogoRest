@@ -22,16 +22,17 @@ namespace JogoApp
     public partial class JogoDetalhes : Window
     {
         private static Models.Jogo jogo { get; set; }
-        private static Models.MeuJogo meu { get; set; }
+        private static Models.Usuario usr { get; set; }
 
         private int media;
 
-        public JogoDetalhes(Models.Jogo j)
+        public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
             InitializeComponent();
             jogo = new Models.Jogo();
-            meu = new Models.MeuJogo();
+            usr = new Models.Usuario();
             jogo = j;
+            usr = u;
             PopularPag();
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
@@ -84,30 +85,38 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Usuario/");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.Usuario> obj = JsonConvert.DeserializeObject<List<Models.Usuario>>(str);
-            Models.Usuario usr = obj.Find(x => x.EstaAutenticado == true);
-
-            meu.IdUsuario = usr.Id;
-            meu.IdJogo = idJogo;
-            meu.Status = status;
-            meu.Classificacao = media.ToString();
+            Models.MeuJogo mj = new Models.MeuJogo
+            {
+                Status = status,
+                Comentario = "",
+                Classificacao = media.ToString(),
+                IdJogo = idJogo,
+                IdUsuario = usr.Id
+            };
+            List<Models.MeuJogo> list = new List<Models.MeuJogo>();
+            list.Add(mj);
+            string s = "=" + JsonConvert.SerializeObject(list);
+            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            await httpClient.PostAsync("/api/MeuJogo/", content);
+            MessageBox.Show("Adicionado com sucesso!");
         }
 
         private void btnQueroJogar_Click(object sender, RoutedEventArgs e)
         {
             SetMeuJogo(jogo.Id, "Quero Jogar");
+            btnQueroJogar.IsEnabled = false;
         }
 
         private void btnJogando_Click(object sender, RoutedEventArgs e)
         {
             SetMeuJogo(jogo.Id, "Jogando");
+            btnJogando.IsEnabled = false;
         }
 
         private void btnJaJoguei_Click(object sender, RoutedEventArgs e)
         {
             SetMeuJogo(jogo.Id, "Já Joguei");
+            btnJaJoguei.IsEnabled = false;
         }
 
         private void btnAvaliar_Click(object sender, RoutedEventArgs e)

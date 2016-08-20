@@ -19,9 +19,9 @@
         <Label x:Name="label4" Content="Plataforma:" HorizontalAlignment="Left" Margin="164,139,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="tbSinopse" HorizontalAlignment="Left" Margin="164,246,0,0" TextWrapping="Wrap" Text="Sinopse" VerticalAlignment="Top" Height="98" Width="243"/>
         <Label x:Name="lblGenero" Content="Gênero" HorizontalAlignment="Left" Margin="222,198,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnQueroJogar" Content="Quero Jogar" HorizontalAlignment="Left" Margin="34,248,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FF0CCD7E"/>
-        <Button x:Name="btnJogando" Content="Jogando" HorizontalAlignment="Left" Margin="34,278,0,0" VerticalAlignment="Top" Width="118" BorderBrush="#FF72D0F9" Background="White"/>
-        <Button x:Name="btnJaJoguei" Content="Já Joguei" HorizontalAlignment="Left" Margin="34,308,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FFE61616"/>
+        <Button x:Name="btnQueroJogar" Content="Quero Jogar" HorizontalAlignment="Left" Margin="34,248,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FF0CCD7E" Click="btnQueroJogar_Click"/>
+        <Button x:Name="btnJogando" Content="Jogando" HorizontalAlignment="Left" Margin="34,278,0,0" VerticalAlignment="Top" Width="118" BorderBrush="#FF72D0F9" Background="White" Click="btnJogando_Click"/>
+        <Button x:Name="btnJaJoguei" Content="Já Joguei" HorizontalAlignment="Left" Margin="34,308,0,0" VerticalAlignment="Top" Width="118" Background="White" BorderBrush="#FFE61616" Click="btnJaJoguei_Click"/>
         <Label x:Name="label5" Content="Comentários:" HorizontalAlignment="Left" Margin="34,452,0,0" VerticalAlignment="Top" Width="373" FontSize="18" BorderBrush="#FF72D0F9" BorderThickness="0,0,0,1"/>
         <ListBox x:Name="lbPlataforma" HorizontalAlignment="Left" Height="51" Margin="239,142,0,0" VerticalAlignment="Top" Width="121"/>
         <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="48" Stroke="Black" VerticalAlignment="Top" Width="431" StrokeThickness="0"/>

@@ -10,7 +10,7 @@
         <Rectangle Fill="#FF72D0F9" HorizontalAlignment="Left" Height="32" Margin="0,0,-2,0" Stroke="Black" VerticalAlignment="Top" Width="294" StrokeThickness="0"/>
 
         <Label x:Name="lblTitulo" Content="Meus Jogos" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="#FF72D0F9" Width="110" Foreground="White" FontSize="14"/>
-        <DataGrid x:Name="dataGridMeusJogos" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="222" Width="272">
+        <DataGrid x:Name="dataGridMeusJogos" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Height="222" Width="272" GridLinesVisibility="None" HeadersVisibility="None" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
