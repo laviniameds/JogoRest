@@ -27,7 +27,7 @@ namespace JogoApp
             InitializeComponent();
         }
 
-        private string ip = "http://localhost:52874/";
+        private string ip = "http://localhost:52874";
 
         private async void ChecarNome()
         {

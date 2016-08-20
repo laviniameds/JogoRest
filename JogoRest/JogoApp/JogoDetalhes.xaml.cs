@@ -38,7 +38,7 @@ namespace JogoApp
             PopularPag();
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
-            VerificarJogo(j.Id);
+            //VerificarJogo(j.Id);
             
         }
         
@@ -144,9 +144,7 @@ namespace JogoApp
 
         private void btnJogando_Click(object sender, RoutedEventArgs e)
         {
-            
-           
-                SetMeuJogo(jogo.Id, "Jogando");
+            SetMeuJogo(jogo.Id, "Jogando");
             btnQueroJogar.IsEnabled = false;
             btnJogando.IsEnabled = false;
             btnJaJoguei.IsEnabled = false;
@@ -155,22 +153,35 @@ namespace JogoApp
 
         private void btnJaJoguei_Click(object sender, RoutedEventArgs e)
         {
-           
-          
-                SetMeuJogo(jogo.Id, "Já Joguei");
+            SetMeuJogo(jogo.Id, "Já Joguei");
             btnQueroJogar.IsEnabled = false;
             btnJogando.IsEnabled = false;
             btnJaJoguei.IsEnabled = false;
 
         }
 
-        private void btnAvaliar_Click(object sender, RoutedEventArgs e)
+        private async void  btnAvaliar_Click(object sender, RoutedEventArgs e)
         {
             if (radioButton1.IsChecked == true) media = 1;
             if (radioButton2.IsChecked == true) media = 2;
             if (radioButton3.IsChecked == true) media = 3;
             if (radioButton4.IsChecked == true) media = 4;
             if (radioButton5.IsChecked == true) media = 5;
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            Models.Jogo game = new Models.Jogo
+            {
+                Id = jogo.Id,
+                Nome = jogo.Nome,
+                Ano = jogo.Ano,
+                Sinopse= jogo.Sinopse,
+                Desenvolvedora= jogo.Desenvolvedora,
+                Imagem = jogo.Imagem
+            };
+            string s = "=" + JsonConvert.SerializeObject(game);
+            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            await httpClient.PutAsync("/api/Jogo/" + game.Id, content);
+            MessageBox.Show("Avaliado com sucesso!");
         }
     }
 }
