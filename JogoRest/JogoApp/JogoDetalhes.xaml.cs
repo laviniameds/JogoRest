@@ -25,6 +25,8 @@ namespace JogoApp
         private static Models.Usuario usr { get; set; }
 
         private int media;
+        private int jID;
+        private int meid;
 
         public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
@@ -36,7 +38,10 @@ namespace JogoApp
             PopularPag();
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
+            VerificarJogo(j.Id);
+            
         }
+        
 
         private void PopularPag()
         {
@@ -46,9 +51,31 @@ namespace JogoApp
             lblMedia.Content = jogo.NotaMedia;
             lblDesenvolvedora.Content = jogo.Desenvolvedora;
             lblNomeJogo.Content = jogo.Nome;
+            jID = jogo.Id;
         }
 
         private string ip = "http://localhost:52874/";
+
+        private async void VerificarJogo(int JogoID)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/MeuJogo");
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            Models.MeuJogo mej = obj.Find(x => x.IdJogo == JogoID);
+            if(mej != null) { 
+            meid = mej.IdJogo;
+            if (meid == jID) {
+                btnQueroJogar.IsEnabled = false;
+                btnJogando.IsEnabled = false;
+                btnJaJoguei.IsEnabled = false;
+
+            }
+            }
+
+        }
+
 
         private async void SetGenero(int IdGenero)
         {
@@ -93,30 +120,48 @@ namespace JogoApp
                 IdJogo = idJogo,
                 IdUsuario = usr.Id
             };
-            List<Models.MeuJogo> list = new List<Models.MeuJogo>();
-            list.Add(mj);
-            string s = "=" + JsonConvert.SerializeObject(list);
-            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            await httpClient.PostAsync("/api/MeuJogo/", content);
-            MessageBox.Show("Adicionado com sucesso!");
+            
+                List<Models.MeuJogo> list = new List<Models.MeuJogo>();
+                list.Add(mj);
+                string s = "=" + JsonConvert.SerializeObject(list);
+                var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                await httpClient.PostAsync("/api/MeuJogo/", content);
+                MessageBox.Show("Adicionado com sucesso!");
+            
+            
         }
 
         private void btnQueroJogar_Click(object sender, RoutedEventArgs e)
         {
+
+            
             SetMeuJogo(jogo.Id, "Quero Jogar");
             btnQueroJogar.IsEnabled = false;
+            btnJogando.IsEnabled = false;
+            btnJaJoguei.IsEnabled = false;
+
         }
 
         private void btnJogando_Click(object sender, RoutedEventArgs e)
         {
-            SetMeuJogo(jogo.Id, "Jogando");
+            
+           
+                SetMeuJogo(jogo.Id, "Jogando");
+            btnQueroJogar.IsEnabled = false;
             btnJogando.IsEnabled = false;
+            btnJaJoguei.IsEnabled = false;
+
         }
 
         private void btnJaJoguei_Click(object sender, RoutedEventArgs e)
         {
-            SetMeuJogo(jogo.Id, "Já Joguei");
+           
+          
+                SetMeuJogo(jogo.Id, "Já Joguei");
+            btnQueroJogar.IsEnabled = false;
+            btnJogando.IsEnabled = false;
             btnJaJoguei.IsEnabled = false;
+
         }
 
         private void btnAvaliar_Click(object sender, RoutedEventArgs e)

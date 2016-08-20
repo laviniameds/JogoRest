@@ -21,7 +21,7 @@ namespace JogoApp
     /// </summary>
     public partial class PagInicial : Window
     {
-        private string ip = "http://localhost:52874/";
+        private string ip = "http://localhost:52874";
         private static Models.Usuario u;
 
         public PagInicial(Models.Usuario usr)
@@ -37,10 +37,11 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/Jogo/");
+            var response = await httpClient.GetAsync("/API/JogoGet");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Jogo> obj = JsonConvert.DeserializeObject<List<Models.Jogo>>(str);
-            gridJogos.ItemsSource = obj;
+            gridJogos.ItemsSource = null;
+            gridJogos.ItemsSource = obj.ToList();
         }
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
