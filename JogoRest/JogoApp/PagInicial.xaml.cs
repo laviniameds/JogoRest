@@ -26,6 +26,7 @@ namespace JogoApp
 
         public PagInicial(Models.Usuario usr)
         {
+            
             InitializeComponent();
             u = new Models.Usuario();
             u = usr;

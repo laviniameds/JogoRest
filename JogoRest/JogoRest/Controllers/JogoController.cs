@@ -31,7 +31,8 @@ namespace JogoRest.Controllers
             }
             return media;
         }
-        // PUT 
+        [Route("api/MediaPut/{ID:int}")]
+        [HttpPut]
         public void Put(int id, [FromBody] string value)
         {
             Models.Jogo x = JsonConvert.DeserializeObject<Models.Jogo>(value);

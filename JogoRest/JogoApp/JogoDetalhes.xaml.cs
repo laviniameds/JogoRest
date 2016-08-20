@@ -93,7 +93,7 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/MeuJogo/" + usr.Id);
+            var response = await httpClient.GetAsync("/api/UsrJogo/" + usr.Id);
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
             Models.MeuJogo mej = obj.Find(x => x.IdJogo == idJogo);
@@ -182,7 +182,7 @@ namespace JogoApp
             };
             string s = "=" + JsonConvert.SerializeObject(game);
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-            await httpClient.PutAsync("/api/Jogo/" + game.Id, content);
+            await httpClient.PutAsync("/api/MediaPut/" + game.Id, content);
             MessageBox.Show("Avaliado com sucesso!");
         }
     }

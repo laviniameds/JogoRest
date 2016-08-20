@@ -27,7 +27,7 @@ namespace JogoRest.Controllers
             var r = from u in dc.MeuJogos where u.IdJogo == IdJogo select u;
             return r.ToList();
         }
-        [Route("api/MeuJogo/{uID:int}")]
+        [Route("api/UsrJogo/{uID:int}")]
         [HttpGet]
         public IEnumerable<Models.MeuJogo> GetFiltro(int uID)
         {

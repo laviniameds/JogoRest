@@ -38,7 +38,7 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);            
-            var response = await httpClient.GetAsync("/api/MeuJogo/" + u.Id);
+            var response = await httpClient.GetAsync("/api/UsrJogo/" + u.Id);
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
             List<Models.MeuJogo> mj = obj.FindAll(x => x.IdUsuario == u.Id);
