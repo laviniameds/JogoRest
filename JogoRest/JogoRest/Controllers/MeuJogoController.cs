@@ -10,11 +10,14 @@ namespace JogoRest.Controllers
 {
     public class MeuJogoController : ApiController
     {
+        //from u in dc.MeuJogos select u
         // GET api/meujogo
-        public IEnumerable<Models.MeuJogo> Get()
+        [Route("api/MeuJogo/{uID:int}")]
+        [HttpGet]
+        public IEnumerable<Models.MeuJogo> Get(int uID)
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
-            var r = from u in dc.MeuJogos select u;
+            var r = from u in dc.MeuJogos where u.IdUsuario == uID select u;
             return r.ToList();
         }
 
@@ -28,6 +31,8 @@ namespace JogoRest.Controllers
         }
 
         // PUT api/meujogo
+        [Route("api/MeuJogoPut/{ID:int}")]
+        [HttpPut]
         public void Put(int id, [FromBody] string value)
         {
             Models.MeuJogo x = JsonConvert.DeserializeObject<Models.MeuJogo>(value);
