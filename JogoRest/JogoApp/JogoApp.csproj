@@ -175,7 +175,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="god_of_war_iii.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="uncharted-4.jpg" />
   </ItemGroup>
