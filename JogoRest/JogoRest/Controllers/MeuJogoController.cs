@@ -18,7 +18,15 @@ namespace JogoRest.Controllers
             var r = from u in dc.MeuJogos select u;
             return r.ToList();
         }
-
+        // GET api/meujogo
+        [Route("api/MeuJogo/{IdJogo:int}")]
+        [HttpGet]
+        public List<Models.MeuJogo> GetFiltroJogo(int IdJogo)
+        {
+            Models.JogoDataContext dc = new Models.JogoDataContext();
+            var r = from u in dc.MeuJogos where u.IdJogo == IdJogo select u;
+            return r.ToList();
+        }
         [Route("api/MeuJogo/{uID:int}")]
         [HttpGet]
         public IEnumerable<Models.MeuJogo> GetFiltro(int uID)
