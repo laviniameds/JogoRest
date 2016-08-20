@@ -38,7 +38,8 @@ namespace JogoApp
             PopularPag();
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
-            //VerificarJogo(j.Id);
+           
+            
             
         }
         
@@ -55,26 +56,6 @@ namespace JogoApp
         }
 
         private string ip = "http://localhost:52874/";
-
-        private async void VerificarJogo(int JogoID)
-        {
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/api/MeuJogo");
-            var str = response.Content.ReadAsStringAsync().Result;
-            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
-            Models.MeuJogo mej = obj.Find(x => x.IdJogo == JogoID);
-            if(mej != null) { 
-            meid = mej.IdJogo;
-            if (meid == jID) {
-                btnQueroJogar.IsEnabled = false;
-                btnJogando.IsEnabled = false;
-                btnJaJoguei.IsEnabled = false;
-
-            }
-            }
-
-        }
 
 
         private async void SetGenero(int IdGenero)
@@ -112,6 +93,12 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/MeuJogo/" + usr.Id);
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            Models.MeuJogo mej = obj.Find(x => x.IdJogo == idJogo);
+            if (mej == null)
+            {
             Models.MeuJogo mj = new Models.MeuJogo
             {
                 Status = status,
@@ -127,42 +114,57 @@ namespace JogoApp
                 var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
                 await httpClient.PostAsync("/api/MeuJogo/", content);
                 MessageBox.Show("Adicionado com sucesso!");
+            }
+            if(mej!= null) {
+                Models.MeuJogo mj2 = new Models.MeuJogo
+                {
+                    Id = mej.Id,
+                    Status = status,
+                    Comentario = "",
+                    Classificacao = media.ToString(),
+                    IdJogo = idJogo,
+                    IdUsuario = usr.Id
+
+                };
+                string s = "=" + JsonConvert.SerializeObject(mj2);
+                var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                await httpClient.PutAsync("/api/MeuJogoPut/" + mj2.Id, content);
+                MessageBox.Show("Atualizado com sucesso!");
             
+            }
             
         }
+
+
+
+    
 
         private void btnQueroJogar_Click(object sender, RoutedEventArgs e)
         {
 
             
             SetMeuJogo(jogo.Id, "Quero Jogar");
-            btnQueroJogar.IsEnabled = false;
-            btnJogando.IsEnabled = false;
-            btnJaJoguei.IsEnabled = false;
+            
 
         }
 
         private void btnJogando_Click(object sender, RoutedEventArgs e)
         {
-            SetMeuJogo(jogo.Id, "Jogando");
-            btnQueroJogar.IsEnabled = false;
-            btnJogando.IsEnabled = false;
-            btnJaJoguei.IsEnabled = false;
+                SetMeuJogo(jogo.Id, "Jogando");
+                
 
         }
 
         private void btnJaJoguei_Click(object sender, RoutedEventArgs e)
         {
-            SetMeuJogo(jogo.Id, "Já Joguei");
-            btnQueroJogar.IsEnabled = false;
-            btnJogando.IsEnabled = false;
-            btnJaJoguei.IsEnabled = false;
+                SetMeuJogo(jogo.Id, "Já Joguei");
+               
 
         }
 
         private async void  btnAvaliar_Click(object sender, RoutedEventArgs e)
         {
-            if (radioButton1.IsChecked == true) media = 1;
+            //if (radioButton1.IsChecked == true) media = 1;
             if (radioButton2.IsChecked == true) media = 2;
             if (radioButton3.IsChecked == true) media = 3;
             if (radioButton4.IsChecked == true) media = 4;
