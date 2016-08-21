@@ -26,7 +26,6 @@ namespace JogoApp
 
         private int media;
         private int jID;
-        private int meid;
 
         public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
@@ -130,6 +129,7 @@ namespace JogoApp
                 var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
                 await httpClient.PutAsync("/api/MeuJogoPut/" + mj2.Id, content);
                 MessageBox.Show("Atualizado com sucesso!");
+
             
             }
             
@@ -164,7 +164,7 @@ namespace JogoApp
 
         private async void  btnAvaliar_Click(object sender, RoutedEventArgs e)
         {
-            //if (radioButton1.IsChecked == true) media = 1;
+            if (radioButton1.IsChecked == true) media = 1;
             if (radioButton2.IsChecked == true) media = 2;
             if (radioButton3.IsChecked == true) media = 3;
             if (radioButton4.IsChecked == true) media = 4;
@@ -184,6 +184,7 @@ namespace JogoApp
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             await httpClient.PutAsync("/api/MediaPut/" + game.Id, content);
             MessageBox.Show("Avaliado com sucesso!");
+            lblMedia.Content = jogo.NotaMedia;
         }
     }
 }
