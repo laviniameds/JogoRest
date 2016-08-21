@@ -12,5 +12,7 @@ namespace JogoApp.Models
         public string Descricao { get; set; }
         public int IdUsr { get; set; }
         public int IdMeuJogo { get; set; }
+        public DateTime Data { get; set; }
+        public int IdJogo { get; set; }
     }
 }

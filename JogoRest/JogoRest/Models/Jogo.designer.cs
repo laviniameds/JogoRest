@@ -45,12 +45,12 @@ namespace JogoRest.Models
     partial void InsertPlataformaJogo(PlataformaJogo instance);
     partial void UpdatePlataformaJogo(PlataformaJogo instance);
     partial void DeletePlataformaJogo(PlataformaJogo instance);
-    partial void InsertComentario(Comentario instance);
-    partial void UpdateComentario(Comentario instance);
-    partial void DeleteComentario(Comentario instance);
     partial void InsertMeuJogo(MeuJogo instance);
     partial void UpdateMeuJogo(MeuJogo instance);
     partial void DeleteMeuJogo(MeuJogo instance);
+    partial void InsertComentario(Comentario instance);
+    partial void UpdateComentario(Comentario instance);
+    partial void DeleteComentario(Comentario instance);
     #endregion
 		
 		public JogoDataContext() : 
@@ -123,19 +123,19 @@ namespace JogoRest.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Comentario> Comentarios
-		{
-			get
-			{
-				return this.GetTable<Comentario>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MeuJogo> MeuJogos
 		{
 			get
 			{
 				return this.GetTable<MeuJogo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Comentario> Comentarios
+		{
+			get
+			{
+				return this.GetTable<Comentario>();
 			}
 		}
 	}
@@ -272,9 +272,9 @@ namespace JogoRest.Models
 		
 		private bool _EstaAutenticado;
 		
-		private EntitySet<Comentario> _Comentarios;
-		
 		private EntitySet<MeuJogo> _MeuJogos;
+		
+		private EntitySet<Comentario> _Comentarios;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -296,8 +296,8 @@ namespace JogoRest.Models
 		
 		public Usuario()
 		{
-			this._Comentarios = new EntitySet<Comentario>(new Action<Comentario>(this.attach_Comentarios), new Action<Comentario>(this.detach_Comentarios));
 			this._MeuJogos = new EntitySet<MeuJogo>(new Action<MeuJogo>(this.attach_MeuJogos), new Action<MeuJogo>(this.detach_MeuJogos));
+			this._Comentarios = new EntitySet<Comentario>(new Action<Comentario>(this.attach_Comentarios), new Action<Comentario>(this.detach_Comentarios));
 			OnCreated();
 		}
 		
@@ -421,19 +421,6 @@ namespace JogoRest.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Comentario", Storage="_Comentarios", ThisKey="Id", OtherKey="IdUsr")]
-		internal EntitySet<Comentario> Comentarios
-		{
-			get
-			{
-				return this._Comentarios;
-			}
-			set
-			{
-				this._Comentarios.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_MeuJogo", Storage="_MeuJogos", ThisKey="Id", OtherKey="IdUsuario")]
 		internal EntitySet<MeuJogo> MeuJogos
 		{
@@ -444,6 +431,19 @@ namespace JogoRest.Models
 			set
 			{
 				this._MeuJogos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Comentario", Storage="_Comentarios", ThisKey="Id", OtherKey="IdUsr")]
+		internal EntitySet<Comentario> Comentarios
+		{
+			get
+			{
+				return this._Comentarios;
+			}
+			set
+			{
+				this._Comentarios.Assign(value);
 			}
 		}
 		
@@ -467,18 +467,6 @@ namespace JogoRest.Models
 			}
 		}
 		
-		private void attach_Comentarios(Comentario entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = this;
-		}
-		
-		private void detach_Comentarios(Comentario entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = null;
-		}
-		
 		private void attach_MeuJogos(MeuJogo entity)
 		{
 			this.SendPropertyChanging();
@@ -486,6 +474,18 @@ namespace JogoRest.Models
 		}
 		
 		private void detach_MeuJogos(MeuJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
+		}
+		
+		private void attach_Comentarios(Comentario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_Comentarios(Comentario entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
@@ -632,6 +632,8 @@ namespace JogoRest.Models
 		
 		private EntitySet<MeuJogo> _MeuJogos;
 		
+		private EntitySet<Comentario> _Comentarios;
+		
 		private EntityRef<Genero> _Genero;
 		
     #region Extensibility Method Definitions
@@ -660,6 +662,7 @@ namespace JogoRest.Models
 		{
 			this._PlataformaJogos = new EntitySet<PlataformaJogo>(new Action<PlataformaJogo>(this.attach_PlataformaJogos), new Action<PlataformaJogo>(this.detach_PlataformaJogos));
 			this._MeuJogos = new EntitySet<MeuJogo>(new Action<MeuJogo>(this.attach_MeuJogos), new Action<MeuJogo>(this.detach_MeuJogos));
+			this._Comentarios = new EntitySet<Comentario>(new Action<Comentario>(this.attach_Comentarios), new Action<Comentario>(this.detach_Comentarios));
 			this._Genero = default(EntityRef<Genero>);
 			OnCreated();
 		}
@@ -854,6 +857,19 @@ namespace JogoRest.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_Comentario", Storage="_Comentarios", ThisKey="Id", OtherKey="IdJogo")]
+		internal EntitySet<Comentario> Comentarios
+		{
+			get
+			{
+				return this._Comentarios;
+			}
+			set
+			{
+				this._Comentarios.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genero_Jogo", Storage="_Genero", ThisKey="IdGenero", OtherKey="Id", IsForeignKey=true)]
 		internal Genero Genero
 		{
@@ -927,6 +943,18 @@ namespace JogoRest.Models
 		}
 		
 		private void detach_MeuJogos(MeuJogo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = null;
+		}
+		
+		private void attach_Comentarios(Comentario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Jogo = this;
+		}
+		
+		private void detach_Comentarios(Comentario entity)
 		{
 			this.SendPropertyChanging();
 			entity.Jogo = null;
@@ -1076,222 +1104,6 @@ namespace JogoRest.Models
 						this._IdPlataforma = default(int);
 					}
 					this.SendPropertyChanged("Plataforma");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comentarios")]
-	public partial class Comentario : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Descricao;
-		
-		private int _IdUsr;
-		
-		private int _IdMeuJogo;
-		
-		private EntityRef<Usuario> _Usuario;
-		
-		private EntityRef<MeuJogo> _MeuJogo;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnDescricaoChanging(string value);
-    partial void OnDescricaoChanged();
-    partial void OnIdUsrChanging(int value);
-    partial void OnIdUsrChanged();
-    partial void OnIdMeuJogoChanging(int value);
-    partial void OnIdMeuJogoChanged();
-    #endregion
-		
-		public Comentario()
-		{
-			this._Usuario = default(EntityRef<Usuario>);
-			this._MeuJogo = default(EntityRef<MeuJogo>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(MAX)")]
-		public string Descricao
-		{
-			get
-			{
-				return this._Descricao;
-			}
-			set
-			{
-				if ((this._Descricao != value))
-				{
-					this.OnDescricaoChanging(value);
-					this.SendPropertyChanging();
-					this._Descricao = value;
-					this.SendPropertyChanged("Descricao");
-					this.OnDescricaoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsr", DbType="Int NOT NULL")]
-		public int IdUsr
-		{
-			get
-			{
-				return this._IdUsr;
-			}
-			set
-			{
-				if ((this._IdUsr != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdUsrChanging(value);
-					this.SendPropertyChanging();
-					this._IdUsr = value;
-					this.SendPropertyChanged("IdUsr");
-					this.OnIdUsrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdMeuJogo", DbType="Int NOT NULL")]
-		public int IdMeuJogo
-		{
-			get
-			{
-				return this._IdMeuJogo;
-			}
-			set
-			{
-				if ((this._IdMeuJogo != value))
-				{
-					if (this._MeuJogo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdMeuJogoChanging(value);
-					this.SendPropertyChanging();
-					this._IdMeuJogo = value;
-					this.SendPropertyChanged("IdMeuJogo");
-					this.OnIdMeuJogoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Comentario", Storage="_Usuario", ThisKey="IdUsr", OtherKey="Id", IsForeignKey=true)]
-		internal Usuario Usuario
-		{
-			get
-			{
-				return this._Usuario.Entity;
-			}
-			set
-			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						previousValue.Comentarios.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						value.Comentarios.Add(this);
-						this._IdUsr = value.Id;
-					}
-					else
-					{
-						this._IdUsr = default(int);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MeuJogo_Comentario", Storage="_MeuJogo", ThisKey="IdMeuJogo", OtherKey="Id", IsForeignKey=true)]
-		internal MeuJogo MeuJogo
-		{
-			get
-			{
-				return this._MeuJogo.Entity;
-			}
-			set
-			{
-				MeuJogo previousValue = this._MeuJogo.Entity;
-				if (((previousValue != value) 
-							|| (this._MeuJogo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MeuJogo.Entity = null;
-						previousValue.Comentarios.Remove(this);
-					}
-					this._MeuJogo.Entity = value;
-					if ((value != null))
-					{
-						value.Comentarios.Add(this);
-						this._IdMeuJogo = value.Id;
-					}
-					else
-					{
-						this._IdMeuJogo = default(int);
-					}
-					this.SendPropertyChanged("MeuJogo");
 				}
 			}
 		}
@@ -1582,6 +1394,311 @@ namespace JogoRest.Models
 		{
 			this.SendPropertyChanging();
 			entity.MeuJogo = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Comentarios")]
+	public partial class Comentario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Descricao;
+		
+		private int _IdUsr;
+		
+		private int _IdMeuJogo;
+		
+		private System.Nullable<System.DateTime> _Data;
+		
+		private System.Nullable<int> _IdJogo;
+		
+		private EntityRef<Jogo> _Jogo;
+		
+		private EntityRef<MeuJogo> _MeuJogo;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDescricaoChanging(string value);
+    partial void OnDescricaoChanged();
+    partial void OnIdUsrChanging(int value);
+    partial void OnIdUsrChanged();
+    partial void OnIdMeuJogoChanging(int value);
+    partial void OnIdMeuJogoChanged();
+    partial void OnDataChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataChanged();
+    partial void OnIdJogoChanging(System.Nullable<int> value);
+    partial void OnIdJogoChanged();
+    #endregion
+		
+		public Comentario()
+		{
+			this._Jogo = default(EntityRef<Jogo>);
+			this._MeuJogo = default(EntityRef<MeuJogo>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descricao", DbType="VarChar(MAX)")]
+		public string Descricao
+		{
+			get
+			{
+				return this._Descricao;
+			}
+			set
+			{
+				if ((this._Descricao != value))
+				{
+					this.OnDescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._Descricao = value;
+					this.SendPropertyChanged("Descricao");
+					this.OnDescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdUsr", DbType="Int NOT NULL")]
+		public int IdUsr
+		{
+			get
+			{
+				return this._IdUsr;
+			}
+			set
+			{
+				if ((this._IdUsr != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdUsrChanging(value);
+					this.SendPropertyChanging();
+					this._IdUsr = value;
+					this.SendPropertyChanged("IdUsr");
+					this.OnIdUsrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdMeuJogo", DbType="Int NOT NULL")]
+		public int IdMeuJogo
+		{
+			get
+			{
+				return this._IdMeuJogo;
+			}
+			set
+			{
+				if ((this._IdMeuJogo != value))
+				{
+					if (this._MeuJogo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdMeuJogoChanging(value);
+					this.SendPropertyChanging();
+					this._IdMeuJogo = value;
+					this.SendPropertyChanged("IdMeuJogo");
+					this.OnIdMeuJogoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Data", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Data
+		{
+			get
+			{
+				return this._Data;
+			}
+			set
+			{
+				if ((this._Data != value))
+				{
+					this.OnDataChanging(value);
+					this.SendPropertyChanging();
+					this._Data = value;
+					this.SendPropertyChanged("Data");
+					this.OnDataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdJogo", DbType="Int")]
+		public System.Nullable<int> IdJogo
+		{
+			get
+			{
+				return this._IdJogo;
+			}
+			set
+			{
+				if ((this._IdJogo != value))
+				{
+					if (this._Jogo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdJogoChanging(value);
+					this.SendPropertyChanging();
+					this._IdJogo = value;
+					this.SendPropertyChanged("IdJogo");
+					this.OnIdJogoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Jogo_Comentario", Storage="_Jogo", ThisKey="IdJogo", OtherKey="Id", IsForeignKey=true)]
+		internal Jogo Jogo
+		{
+			get
+			{
+				return this._Jogo.Entity;
+			}
+			set
+			{
+				Jogo previousValue = this._Jogo.Entity;
+				if (((previousValue != value) 
+							|| (this._Jogo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Jogo.Entity = null;
+						previousValue.Comentarios.Remove(this);
+					}
+					this._Jogo.Entity = value;
+					if ((value != null))
+					{
+						value.Comentarios.Add(this);
+						this._IdJogo = value.Id;
+					}
+					else
+					{
+						this._IdJogo = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Jogo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MeuJogo_Comentario", Storage="_MeuJogo", ThisKey="IdMeuJogo", OtherKey="Id", IsForeignKey=true)]
+		internal MeuJogo MeuJogo
+		{
+			get
+			{
+				return this._MeuJogo.Entity;
+			}
+			set
+			{
+				MeuJogo previousValue = this._MeuJogo.Entity;
+				if (((previousValue != value) 
+							|| (this._MeuJogo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MeuJogo.Entity = null;
+						previousValue.Comentarios.Remove(this);
+					}
+					this._MeuJogo.Entity = value;
+					if ((value != null))
+					{
+						value.Comentarios.Add(this);
+						this._IdMeuJogo = value.Id;
+					}
+					else
+					{
+						this._IdMeuJogo = default(int);
+					}
+					this.SendPropertyChanged("MeuJogo");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Comentario", Storage="_Usuario", ThisKey="IdUsr", OtherKey="Id", IsForeignKey=true)]
+		internal Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Comentarios.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Comentarios.Add(this);
+						this._IdUsr = value.Id;
+					}
+					else
+					{
+						this._IdUsr = default(int);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
