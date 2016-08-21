@@ -10,7 +10,6 @@ namespace JogoApp.Models
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public string Comentario { get; set; }
         public string Classificacao { get; set; }
         public int IdJogo { get; set; }
         public int IdUsuario { get; set; }

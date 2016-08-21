@@ -124,6 +124,7 @@
     <Compile Include="MeusJogosPerfil.xaml.cs">
       <DependentUpon>MeusJogosPerfil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comentario.cs" />
     <Compile Include="Models\Genero.cs" />
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\MeuJogo.cs" />

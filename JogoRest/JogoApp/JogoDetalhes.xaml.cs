@@ -131,7 +131,6 @@ namespace JogoApp
             Models.MeuJogo mj = new Models.MeuJogo
             {
                 Status = status,
-                Comentario = "",
                 Classificacao = null,
                 IdJogo = idJogo,
                 IdUsuario = usr.Id
@@ -149,7 +148,6 @@ namespace JogoApp
                 {
                     Id = mej.Id,
                     Status = status,
-                    Comentario = "",
                     Classificacao = media.ToString(),
                     IdJogo = idJogo,
                     IdUsuario = usr.Id

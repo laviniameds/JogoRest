@@ -56,7 +56,6 @@ namespace JogoRest.Controllers
                                  select u).Single();
             mj.IdJogo = x.IdJogo;
             mj.IdUsuario = x.IdUsuario;
-            mj.Comentario = x.Comentario;
             mj.Status = x.Status;
             mj.Classificacao = x.Classificacao;
 
