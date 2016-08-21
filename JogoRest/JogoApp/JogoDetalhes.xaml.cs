@@ -26,6 +26,8 @@ namespace JogoApp
 
         private int media;
         private int jID;
+        private int meid;
+
 
         public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
@@ -38,10 +40,6 @@ namespace JogoApp
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
             VerificarJogo(j.Id);
-
-
-
-
         }
         
 
@@ -134,7 +132,7 @@ namespace JogoApp
             {
                 Status = status,
                 Comentario = "",
-                Classificacao = media.ToString(),
+                Classificacao = null,
                 IdJogo = idJogo,
                 IdUsuario = usr.Id
             };
@@ -166,10 +164,6 @@ namespace JogoApp
             }
             
         }
-
-
-
-    
 
         private void btnQueroJogar_Click(object sender, RoutedEventArgs e)
         {
