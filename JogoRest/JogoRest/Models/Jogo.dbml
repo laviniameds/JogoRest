@@ -1,22 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="JogosBD" Class="JogoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LUCAS\SQLEXPRESS;Initial Catalog=JogosBD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="JogosBDConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Plataforma" Member="Plataformas">
-    <Type Name="Plataforma">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Descricao" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Plataforma_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdPlataforma" Type="PlataformaJogo" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Usuario" Member="Usuarios">
-    <Type Name="Usuario">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Senha" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="Imagem" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="EstaAutenticado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Usuario_MeuJogo" Member="MeuJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdUsuario" Type="MeuJogo" />
-      <Association Name="Usuario_Comentario" Member="Comentarios" AccessModifier="Internal" ThisKey="Id" OtherKey="IdUsr" Type="Comentario" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=THUANNY\SQLEXPRESS;Initial Catalog=JogosBD;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="JogosBDConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Comentarios" Member="Comentarios">
+    <Type Name="Comentario">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdUsr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdMeuJogo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdJogo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Jogo_Comentario" Member="Jogo" AccessModifier="Internal" ThisKey="IdJogo" OtherKey="Id" Type="Jogo" IsForeignKey="true" />
+      <Association Name="MeuJogo_Comentario" Member="MeuJogo" AccessModifier="Internal" ThisKey="IdMeuJogo" OtherKey="Id" Type="MeuJogo" IsForeignKey="true" />
+      <Association Name="Usuario_Comentario" Member="Usuario" AccessModifier="Internal" ThisKey="IdUsr" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Genero" Member="Generos">
@@ -36,18 +30,10 @@
       <Column Name="NotaMedia" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Imagem" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IdGenero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Jogo_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="PlataformaJogo" />
-      <Association Name="Jogo_MeuJogo" Member="MeuJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="MeuJogo" />
       <Association Name="Jogo_Comentario" Member="Comentarios" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="Comentario" />
+      <Association Name="Jogo_MeuJogo" Member="MeuJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="MeuJogo" />
+      <Association Name="Jogo_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdJogo" Type="PlataformaJogo" />
       <Association Name="Genero_Jogo" Member="Genero" AccessModifier="Internal" ThisKey="IdGenero" OtherKey="Id" Type="Genero" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PlataformaJogo" Member="PlataformaJogos">
-    <Type Name="PlataformaJogo">
-      <Column Name="IdJogo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IdPlataforma" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Jogo_PlataformaJogo" Member="Jogo" AccessModifier="Internal" ThisKey="IdJogo" OtherKey="Id" Type="Jogo" IsForeignKey="true" />
-      <Association Name="Plataforma_PlataformaJogo" Member="Plataforma" AccessModifier="Internal" ThisKey="IdPlataforma" OtherKey="Id" Type="Plataforma" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MeuJogo" Member="MeuJogos">
@@ -62,17 +48,31 @@
       <Association Name="Usuario_MeuJogo" Member="Usuario" AccessModifier="Internal" ThisKey="IdUsuario" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Comentarios" Member="Comentarios">
-    <Type Name="Comentario">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="IdUsr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IdMeuJogo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Data" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="IdJogo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Jogo_Comentario" Member="Jogo" AccessModifier="Internal" ThisKey="IdJogo" OtherKey="Id" Type="Jogo" IsForeignKey="true" />
-      <Association Name="MeuJogo_Comentario" Member="MeuJogo" AccessModifier="Internal" ThisKey="IdMeuJogo" OtherKey="Id" Type="MeuJogo" IsForeignKey="true" />
-      <Association Name="Usuario_Comentario" Member="Usuario" AccessModifier="Internal" ThisKey="IdUsr" OtherKey="Id" Type="Usuario" IsForeignKey="true" />
+  <Table Name="dbo.Plataforma" Member="Plataformas">
+    <Type Name="Plataforma">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Descricao" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Plataforma_PlataformaJogo" Member="PlataformaJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdPlataforma" Type="PlataformaJogo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PlataformaJogo" Member="PlataformaJogos">
+    <Type Name="PlataformaJogo">
+      <Column Name="IdJogo" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdPlataforma" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Jogo_PlataformaJogo" Member="Jogo" AccessModifier="Internal" ThisKey="IdJogo" OtherKey="Id" Type="Jogo" IsForeignKey="true" />
+      <Association Name="Plataforma_PlataformaJogo" Member="Plataforma" AccessModifier="Internal" ThisKey="IdPlataforma" OtherKey="Id" Type="Plataforma" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Senha" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Imagem" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="EstaAutenticado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_Comentario" Member="Comentarios" AccessModifier="Internal" ThisKey="Id" OtherKey="IdUsr" Type="Comentario" />
+      <Association Name="Usuario_MeuJogo" Member="MeuJogos" AccessModifier="Internal" ThisKey="Id" OtherKey="IdUsuario" Type="MeuJogo" />
     </Type>
   </Table>
 </Database>

@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace JogoRest.Controllers
 {
@@ -18,6 +19,7 @@ namespace JogoRest.Controllers
             var r = from u in dc.MeuJogos select u;
             return r.ToList();
         }
+
         // GET api/meujogo
         [Route("api/MeuJogo/{IdJogo:int}")]
         [HttpGet]
@@ -27,6 +29,7 @@ namespace JogoRest.Controllers
             var r = from u in dc.MeuJogos where u.IdJogo == IdJogo select u;
             return r.ToList();
         }
+
         [Route("api/UsrJogo/{uID:int}")]
         [HttpGet]
         public IEnumerable<Models.MeuJogo> GetFiltro(int uID)
@@ -62,6 +65,25 @@ namespace JogoRest.Controllers
             dc.SubmitChanges();
         }
 
+        // SET avalicao
+        [Route("api/Avaliar/{ID:int}/{A:int}")]
+        [HttpPut]
+        public void Avaliar(int id, [FromBody] string value, int a)
+        {
+            Models.MeuJogo x = JsonConvert.DeserializeObject<Models.MeuJogo>(value);
+            Models.JogoDataContext dc = new Models.JogoDataContext();
+            Models.MeuJogo mj = (from u in dc.MeuJogos
+                                 where u.Id == id
+                                 select u).Single();
+            mj.IdJogo = x.IdJogo;
+            mj.IdUsuario = x.IdUsuario;
+            mj.Status = x.Status;
+            mj.Classificacao = a.ToString();
+            dc.SubmitChanges();
+
+            JogoController jc = new JogoController();
+            jc.Put(x.IdJogo);
+        }
         /*// DELETE api/meujogo
         public void Delete(int id)
         {
