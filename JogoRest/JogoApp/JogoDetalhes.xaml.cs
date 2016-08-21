@@ -40,6 +40,7 @@ namespace JogoApp
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
             VerificarJogo(j.Id);
+            PopularComentarios(j.Id);
         }
         
 
@@ -55,6 +56,19 @@ namespace JogoApp
         }
 
         private string ip = "http://localhost:52874/";
+        private async void PopularComentarios(int jogoID)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/ComentJogo/" + jogoID);
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.Comentario> obj = JsonConvert.DeserializeObject<List<Models.Comentario>>(str);
+            lbComentarios.ItemsSource = null;
+            lbComentarios.ItemsSource = obj;
+
+
+
+        }
 
         private async void VerificarJogo(int JogoID)
         {
@@ -233,6 +247,67 @@ namespace JogoApp
             string s = "=" + JsonConvert.SerializeObject(mj2);
             var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
             await httpClient.PutAsync("/api/MeuJogoPut/" + mj2.Id, content);
+        }
+
+        private async void btnComentar_Click(object sender, RoutedEventArgs e)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/UsrJogo/" + usr.Id);
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            Models.MeuJogo mej = obj.Find(x => x.IdJogo == jID);
+            if (mej == null)
+            {
+                MessageBox.Show("Adicione o jogo para sua coleção antes de comentar!!");
+               
+            }
+            if (mej != null)
+            {
+                //Achar Id comentário
+                 var response1 = await httpClient.GetAsync("/api/ComentJogo/" + jogo.Id);
+                  var str1 = response1.Content.ReadAsStringAsync().Result;
+                List<Models.Comentario> obj1 = JsonConvert.DeserializeObject<List<Models.Comentario>>(str1);
+                Models.Comentario mycoment = obj1.Find(x => x.IdMeuJogo == mej.Id && x.IdUsr == usr.Id);
+                //achou!
+                if (mycoment == null)
+                {
+                    Models.Comentario coment = new Models.Comentario
+                    {
+                        Descricao = txtComent.Text,
+                        Data = DateTime.Now,
+                        IdUsr = usr.Id,
+                        IdMeuJogo = mej.Id,
+                        IdJogo = jID
+                    };
+
+                    List<Models.Comentario> list = new List<Models.Comentario>();
+                    list.Add(coment);
+                    var s1 = "=" + JsonConvert.SerializeObject(list);
+                    var content1 = new StringContent(s1, Encoding.UTF8, "application/x-www-form-urlencoded");
+                    await httpClient.PostAsync("/api/ComentPost/", content1);
+                    MessageBox.Show("Comentário Feito!");
+                }
+                if(mycoment != null) { 
+                Models.Comentario mj2 = new Models.Comentario
+                {
+                    ID = mycoment.ID,
+                    Descricao = txtComent.Text,
+                    Data = DateTime.Now,
+                    IdUsr = usr.Id,
+                    IdMeuJogo = mej.Id,
+                    IdJogo = jID
+
+
+                };
+                string s = "=" + JsonConvert.SerializeObject(mj2);
+                var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+                await httpClient.PutAsync("/api/ComentPut/" + mj2.ID, content);
+                MessageBox.Show("Comentário Atualizado!");
+                }
+
+            }
+
         }
     }
 }
