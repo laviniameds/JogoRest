@@ -38,9 +38,11 @@ namespace JogoApp
             PopularPag();
             SetGenero(j.IdGenero);
             SetPlataforma(j.Id);
-           
-            
-            
+            VerificarJogo(j.Id);
+
+
+
+
         }
         
 
@@ -57,7 +59,37 @@ namespace JogoApp
 
         private string ip = "http://localhost:52874/";
 
+        private async void VerificarJogo(int JogoID)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/UsrJogo/" + usr.Id);
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            Models.MeuJogo mej = obj.Find(x => x.IdJogo == JogoID);
+            if (mej != null)
+            {
+                meid = mej.IdJogo;
+                string status = mej.Status;
+                if (meid == jID)
+                {
+                    if (status == "Quero Jogar")
+                    {
+                        btnQueroJogar.IsEnabled = false;
+                    }
+                    if (status == "Jogando")
+                    {
+                        btnJogando.IsEnabled = false;
+                    }
+                    if (status == "Já Joguei")
+                    {
+                        btnJaJoguei.IsEnabled = false;
+                    }
 
+                }
+            }
+
+        }
         private async void SetGenero(int IdGenero)
         {
             HttpClient httpClient = new HttpClient();
