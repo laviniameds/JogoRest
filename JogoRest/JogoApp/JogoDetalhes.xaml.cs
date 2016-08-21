@@ -27,7 +27,7 @@ namespace JogoApp
         private int media;
         private int jID;
         private int meid;
-
+       private  bool BoolProp = true;
 
         public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
@@ -63,10 +63,20 @@ namespace JogoApp
             var response = await httpClient.GetAsync("/api/ComentJogo/" + jogoID);
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Comentario> obj = JsonConvert.DeserializeObject<List<Models.Comentario>>(str);
-            lbComentarios.ItemsSource = null;
-            lbComentarios.ItemsSource = obj;
+            if(obj != null) { 
+            g1.ItemsSource = null;
+            g1.ItemsSource = obj;
+            }
+   
+            Models.Comentario mycoment = obj.Find(x => x.IdUsr == usr.Id);
+            if (mycoment != null) { 
+            int uid = mycoment.IdUsr;
+            if (uid != usr.Id)
+                {
 
 
+                }
+            }
 
         }
 
@@ -278,7 +288,8 @@ namespace JogoApp
                         Data = DateTime.Now,
                         IdUsr = usr.Id,
                         IdMeuJogo = mej.Id,
-                        IdJogo = jID
+                        IdJogo = jID,
+                        Autor=usr.Nome
                     };
 
                     List<Models.Comentario> list = new List<Models.Comentario>();
@@ -296,7 +307,8 @@ namespace JogoApp
                     Data = DateTime.Now,
                     IdUsr = usr.Id,
                     IdMeuJogo = mej.Id,
-                    IdJogo = jID
+                    IdJogo = jID,
+                    Autor=usr.Nome
 
 
                 };
@@ -308,6 +320,15 @@ namespace JogoApp
 
             }
 
+        }
+
+        private  async void Comentario_Click(object sender, RoutedEventArgs e)
+        {
+
+            object id = ((Button)sender).CommandParameter;
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            await httpClient.DeleteAsync("/api/ComentDelSingle/" +int.Parse(id.ToString()));
         }
     }
 }

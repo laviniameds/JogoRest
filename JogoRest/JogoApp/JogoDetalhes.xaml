@@ -35,7 +35,20 @@
 
         <Button x:Name="btnComentar" Content="Comentar" HorizontalAlignment="Left" Margin="332,534,0,0" VerticalAlignment="Top" Width="75" Background="White" BorderBrush="#FF0CCD7E" Click="btnComentar_Click"/>
         <TextBox x:Name="txtComent" HorizontalAlignment="Left" Height="48" Margin="34,480,0,0" TextWrapping="Wrap" Text="Digite seu comentário" VerticalAlignment="Top" Width="373" Cursor="None"/>
-        <ListBox x:Name="lbComentarios" HorizontalAlignment="Left" Height="194" Margin="21,566,0,0" VerticalAlignment="Top" Width="386" BorderBrush="#FF72D0F9" BorderThickness="0"/>
+        <DataGrid x:Name="g1" HorizontalAlignment="Left" Margin="20,564,0,0" VerticalAlignment="Top" Height="196" Width="387" AutoGenerateColumns="False" IsReadOnly="true" HeadersVisibility="None" GridLinesVisibility="None" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Autor}"/>
+                <DataGridTextColumn Binding="{Binding Descricao}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ComentDEL"  IsEnabled="{Binding Path=BoolProp}" Click="Comentario_Click" CommandParameter="{Binding ID}" Content="Deletar"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
 
 
 

@@ -44,7 +44,7 @@ namespace JogoRest.Controllers
 
             dc.SubmitChanges();
         }
-        [Route("api/ComentDelSingle/id:{int}")]
+        [Route("api/ComentDelSingle/{id:int}")]
         [HttpDelete]
         public void Delete(int id)
         {
@@ -55,7 +55,7 @@ namespace JogoRest.Controllers
             dc.Comentarios.DeleteOnSubmit(usr);
             dc.SubmitChanges();
         }
-        [Route("api/ComentDelMyGame/id:{int}")]
+        [Route("api/ComentDelMyGame/{id:int}")]
         [HttpDelete]
         public void DeleteMyGame(int id)
         {

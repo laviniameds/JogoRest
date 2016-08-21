@@ -14,5 +14,11 @@ namespace JogoApp.Models
         public int IdMeuJogo { get; set; }
         public DateTime Data { get; set; }
         public int IdJogo { get; set; }
+        public string Autor { get; set; }
+
+        public override string ToString()
+        {
+            return String.Format(Autor + " :" + " " + Descricao);
+        }
     }
 }
