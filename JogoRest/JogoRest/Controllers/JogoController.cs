@@ -17,6 +17,7 @@ namespace JogoRest.Controllers
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();
             var r = from j in dc.Jogos select j;
+            r.OrderBy(x => x.NotaMedia);
             return r.ToList();
         }
 

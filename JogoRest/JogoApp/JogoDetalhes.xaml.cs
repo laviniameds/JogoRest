@@ -31,6 +31,7 @@ namespace JogoApp
 
         public JogoDetalhes(Models.Jogo j, Models.Usuario u)
         {
+            
             InitializeComponent();
             jogo = new Models.Jogo();
             usr = new Models.Usuario();
@@ -54,7 +55,7 @@ namespace JogoApp
             lblNomeJogo.Content = jogo.Nome;
             jID = jogo.Id;
         }
-
+        
         private string ip = "http://localhost:52874/";
         private async void PopularComentarios(int jogoID)
         {
@@ -192,14 +193,14 @@ namespace JogoApp
 
             
             SetMeuJogo(jogo.Id, "Quero Jogar");
-            
 
         }
 
         private void btnJogando_Click(object sender, RoutedEventArgs e)
         {
                 SetMeuJogo(jogo.Id, "Jogando");
-                
+            
+
 
         }
 
