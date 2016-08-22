@@ -80,9 +80,6 @@ namespace JogoRest.Controllers
             mj.Status = x.Status;
             mj.Classificacao = a.ToString();
             dc.SubmitChanges();
-
-            JogoController jc = new JogoController();
-            jc.Put(x.IdJogo);
         }
         /*// DELETE api/meujogo
         public void Delete(int id)

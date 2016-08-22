@@ -166,13 +166,14 @@ namespace JogoApp
                 var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
                 await httpClient.PostAsync("/api/MeuJogo/", content);
                 MessageBox.Show("Adicionado com sucesso!");
+
             }
             if(mej!= null) {
                 Models.MeuJogo mj2 = new Models.MeuJogo
                 {
                     Id = mej.Id,
                     Status = status,
-                    Classificacao = media.ToString(),
+                    Classificacao = mej.Classificacao,
                     IdJogo = idJogo,
                     IdUsuario = usr.Id
 
@@ -181,10 +182,9 @@ namespace JogoApp
                 var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
                 await httpClient.PutAsync("/api/MeuJogoPut/" + mj2.Id, content);
                 MessageBox.Show("Atualizado com sucesso!");
-
-            
             }
-            
+
+
         }
 
         private void btnQueroJogar_Click(object sender, RoutedEventArgs e)
@@ -210,31 +210,31 @@ namespace JogoApp
 
         }
 
-        private void  btnAvaliar_Click(object sender, RoutedEventArgs e)
+        private async void  btnAvaliar_Click(object sender, RoutedEventArgs e)
         {
-            if (radioButton1.IsChecked == true) media = 1;
-            if (radioButton2.IsChecked == true) media = 2;
-            if (radioButton3.IsChecked == true) media = 3;
-            if (radioButton4.IsChecked == true) media = 4;
-            if (radioButton5.IsChecked == true) media = 5;
-            SetAvalicao();
-            lblMedia.Content = jogo.NotaMedia;
-            MessageBox.Show("Avaliado com sucesso!");
-            /*
-                        HttpClient httpClient = new HttpClient();
-                        httpClient.BaseAddress = new Uri(ip);
-                        Models.MeuJogo game = new Models.MeuJogo
-                        {
-                            Status = status,
-                            Classificacao = null,
-                            IdJogo = idJogo,
-                            IdUsuario = usr.Id
-                        };
-                        string s = "=" + JsonConvert.SerializeObject(game);
-                        var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
-                        await httpClient.PutAsync("/api/MediaPut/" + game.Id, content);
-                        MessageBox.Show("Avaliado com sucesso!");
-                        lblMedia.Content = jogo.NotaMedia;*/
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            var response = await httpClient.GetAsync("/api/UsrJogo/" + usr.Id);
+            var str = response.Content.ReadAsStringAsync().Result;
+            List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
+            Models.MeuJogo mej = obj.Find(x => x.IdJogo == jID);
+            if (mej == null)
+            {
+                MessageBox.Show("Adicione o jogo para sua coleção antes de avaliá-lo!!");
+
+            }
+            if (mej != null)
+            {
+                if (radioButton1.IsChecked == true) media = 1;
+                if (radioButton2.IsChecked == true) media = 2;
+                if (radioButton3.IsChecked == true) media = 3;
+                if (radioButton4.IsChecked == true) media = 4;
+                if (radioButton5.IsChecked == true) media = 5;
+                SetAvalicao();
+                SetMedia();
+                MessageBox.Show("Avaliado com sucesso!");
+            }
+                   
         }
 
         private async void SetAvalicao() {
@@ -259,6 +259,24 @@ namespace JogoApp
             await httpClient.PutAsync("/api/MeuJogoPut/" + mj2.Id, content);
         }
 
+        private async void SetMedia()
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(ip);
+            Models.Jogo game = new Models.Jogo
+            {
+                Id = jogo.Id,
+                Nome = jogo.Nome,
+                Ano = jogo.Ano,
+                Sinopse = jogo.Sinopse,
+                Desenvolvedora = jogo.Desenvolvedora,
+                Imagem = jogo.Imagem
+            };
+            string s = "=" + JsonConvert.SerializeObject(game);
+            var content = new StringContent(s, Encoding.UTF8, "application/x-www-form-urlencoded");
+            await httpClient.PutAsync("/api/MediaPut/" + game.Id, content);
+
+        }
         private async void btnComentar_Click(object sender, RoutedEventArgs e)
         {
             HttpClient httpClient = new HttpClient();
@@ -321,7 +339,7 @@ namespace JogoApp
             }
 
         }
-
+        
         private  async void Comentario_Click(object sender, RoutedEventArgs e)
         {
 

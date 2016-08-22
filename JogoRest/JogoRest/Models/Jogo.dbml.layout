@@ -1,103 +1,103 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 26.75, 14" name="Jogo">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 20.25, 15.875" name="Jogo">
   <DataContextMoniker Name="/JogoDataContext" />
   <nestedChildShapes>
-    <classShape Id="f0115b89-ff3c-4c7b-b227-bfe1940ae6cf" absoluteBounds="22.125, 7, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/JogoDataContext/Genero" />
-      <nestedChildShapes>
-        <elementListCompartment Id="87d7786c-8a94-4105-983e-338e10bc9dff" absoluteBounds="22.14, 7.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="86cffd73-18d1-42d7-83be-812f491c69e7" absoluteBounds="18.25, 6.125, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/JogoDataContext/Jogo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="64a42f8d-8347-40cc-809c-dea3dc5adf44" absoluteBounds="18.265, 6.5850000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(22.125 : 7.85024251302083); (20.25 : 7.85024251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/JogoDataContext/Genero/Genero_Jogo" />
-      <nodes>
-        <classShapeMoniker Id="f0115b89-ff3c-4c7b-b227-bfe1940ae6cf" />
-        <classShapeMoniker Id="86cffd73-18d1-42d7-83be-812f491c69e7" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="c48a9120-8249-4166-ae74-5d1a8d9f741a" absoluteBounds="18.625, 9.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/JogoDataContext/MeuJogo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ef50ff76-815d-4bc7-b17b-7131b4ee46e1" absoluteBounds="18.64, 10.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(19.03125 : 8.47280110677083); (19.03125 : 9.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_MeuJogo" />
-      <nodes>
-        <classShapeMoniker Id="86cffd73-18d1-42d7-83be-812f491c69e7" />
-        <classShapeMoniker Id="c48a9120-8249-4166-ae74-5d1a8d9f741a" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="e76d4ae1-b37a-4ea0-bd87-7e51513d6b5a" absoluteBounds="22.25, 4.625, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/JogoDataContext/Plataforma" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ed984ee3-b85d-4e05-ba4b-105347660d7d" absoluteBounds="22.265, 5.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ba2dce57-e50b-45f0-8eeb-2201399519c8" absoluteBounds="19.375, 4.375, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/JogoDataContext/PlataformaJogo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="eab5c821-faac-4688-a2ce-5824435eefaf" absoluteBounds="19.39, 4.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(19.8125 : 6.125); (19.8125 : 5.56899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_PlataformaJogo" />
-      <nodes>
-        <classShapeMoniker Id="86cffd73-18d1-42d7-83be-812f491c69e7" />
-        <classShapeMoniker Id="ba2dce57-e50b-45f0-8eeb-2201399519c8" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(22.25 : 5.09699625651042); (21.375 : 5.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/JogoDataContext/Plataforma/Plataforma_PlataformaJogo" />
-      <nodes>
-        <classShapeMoniker Id="e76d4ae1-b37a-4ea0-bd87-7e51513d6b5a" />
-        <classShapeMoniker Id="ba2dce57-e50b-45f0-8eeb-2201399519c8" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="b44ee9bd-490b-4079-9ce8-1d9cb6dc0c91" absoluteBounds="24.5, 8.375, 2, 1.9631982421875">
-      <DataClassMoniker Name="/JogoDataContext/Usuario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3e3f0670-aeb7-44d1-9062-15cb4f2a4f0b" absoluteBounds="24.515, 8.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(24.5 : 9.11139805338542); (20.46875 : 9.11139805338542); (20.46875 : 9.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/JogoDataContext/Usuario/Usuario_MeuJogo" />
-      <nodes>
-        <classShapeMoniker Id="b44ee9bd-490b-4079-9ce8-1d9cb6dc0c91" />
-        <classShapeMoniker Id="c48a9120-8249-4166-ae74-5d1a8d9f741a" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="7e43d916-68e9-482e-949b-684d0afad38f" absoluteBounds="22.25, 11.625, 2, 2.1554996744791666">
+    <classShape Id="1ddfb1eb-9130-477e-bab0-7a1e5e6097ce" absoluteBounds="11.25, 9.375, 2, 2.1554996744791666">
       <DataClassMoniker Name="/JogoDataContext/Comentario" />
       <nestedChildShapes>
-        <elementListCompartment Id="56f109c0-4ff7-4fd4-9d01-217cd93d7b36" absoluteBounds="22.265, 12.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="fd8950f4-8159-49bb-a649-afa1f9196870" absoluteBounds="11.265, 9.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(18.40625 : 8.47280110677083); (18.40625 : 12.7027498372396); (22.25 : 12.7027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="0a33b2b8-ef60-431a-8ead-d3a33520f697" absoluteBounds="13.75, 8.25, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/JogoDataContext/Genero" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6216bed7-6688-4fbb-bd19-ef37f90d3ab3" absoluteBounds="13.765, 8.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f678228f-0edb-4ca0-8825-1f7e064d4cc6" absoluteBounds="14.625, 11, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/JogoDataContext/Jogo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b95fff66-d605-45eb-817a-a5095f9f3e55" absoluteBounds="14.64, 11.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.625 : 11.2652498372396); (13.25 : 11.2652498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_Comentario" />
       <nodes>
-        <classShapeMoniker Id="86cffd73-18d1-42d7-83be-812f491c69e7" />
-        <classShapeMoniker Id="7e43d916-68e9-482e-949b-684d0afad38f" />
+        <classShapeMoniker Id="f678228f-0edb-4ca0-8825-1f7e064d4cc6" />
+        <classShapeMoniker Id="1ddfb1eb-9130-477e-bab0-7a1e5e6097ce" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(20.625 : 10.6354484049479); (23.25 : 10.6354484049479); (23.25 : 11.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(15.1875 : 9.44399251302083); (15.1875 : 11)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Genero/Genero_Jogo" />
+      <nodes>
+        <classShapeMoniker Id="0a33b2b8-ef60-431a-8ead-d3a33520f697" />
+        <classShapeMoniker Id="f678228f-0edb-4ca0-8825-1f7e064d4cc6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="203230db-4dad-491d-8f9e-4726dfee0733" absoluteBounds="12, 12.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/JogoDataContext/MeuJogo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23db6094-2323-407a-ba6a-cefad8881513" absoluteBounds="12.015, 12.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(12.625 : 12.25); (12.625 : 11.5304996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/MeuJogo/MeuJogo_Comentario" />
       <nodes>
-        <classShapeMoniker Id="c48a9120-8249-4166-ae74-5d1a8d9f741a" />
-        <classShapeMoniker Id="7e43d916-68e9-482e-949b-684d0afad38f" />
+        <classShapeMoniker Id="203230db-4dad-491d-8f9e-4726dfee0733" />
+        <classShapeMoniker Id="1ddfb1eb-9130-477e-bab0-7a1e5e6097ce" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(25.5 : 10.3381982421875); (25.5 : 12.7027498372396); (24.25 : 12.7027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14.625 : 12.7989005533854); (14 : 12.7989005533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_MeuJogo" />
+      <nodes>
+        <classShapeMoniker Id="f678228f-0edb-4ca0-8825-1f7e064d4cc6" />
+        <classShapeMoniker Id="203230db-4dad-491d-8f9e-4726dfee0733" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="861144d5-3a9a-40ef-8177-2f48f690f066" absoluteBounds="16.125, 9.375, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/JogoDataContext/Plataforma" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47018d6c-8796-4a0f-be2c-5bdc6b6e7d86" absoluteBounds="16.14, 9.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c0ee47eb-37e3-49f8-930e-8ec179517f38" absoluteBounds="18, 11.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/JogoDataContext/PlataformaJogo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb30b1ca-c249-4b46-8f3f-cc151f31d189" absoluteBounds="18.015, 11.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(16.625 : 12.0969962565104); (18 : 12.0969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Jogo/Jogo_PlataformaJogo" />
+      <nodes>
+        <classShapeMoniker Id="f678228f-0edb-4ca0-8825-1f7e064d4cc6" />
+        <classShapeMoniker Id="c0ee47eb-37e3-49f8-930e-8ec179517f38" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(18.125 : 9.97199625651042); (19.0625005 : 9.97199625651042); (19.0625005 : 11.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Plataforma/Plataforma_PlataformaJogo" />
+      <nodes>
+        <classShapeMoniker Id="861144d5-3a9a-40ef-8177-2f48f690f066" />
+        <classShapeMoniker Id="c0ee47eb-37e3-49f8-930e-8ec179517f38" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cf9a0ffd-7874-478a-90bf-200fcb34ecf1" absoluteBounds="18, 13.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/JogoDataContext/Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a166280b-9b3d-4e29-9b47-bc64502f05a6" absoluteBounds="18.015, 14.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(18 : 14.8357975260417); (11.59375 : 14.8357975260417); (11.59375 : 11.5304996744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/JogoDataContext/Usuario/Usuario_Comentario" />
       <nodes>
-        <classShapeMoniker Id="b44ee9bd-490b-4079-9ce8-1d9cb6dc0c91" />
-        <classShapeMoniker Id="7e43d916-68e9-482e-949b-684d0afad38f" />
+        <classShapeMoniker Id="cf9a0ffd-7874-478a-90bf-200fcb34ecf1" />
+        <classShapeMoniker Id="1ddfb1eb-9130-477e-bab0-7a1e5e6097ce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(18 : 13.8229484049479); (14 : 13.8229484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/JogoDataContext/Usuario/Usuario_MeuJogo" />
+      <nodes>
+        <classShapeMoniker Id="cf9a0ffd-7874-478a-90bf-200fcb34ecf1" />
+        <classShapeMoniker Id="203230db-4dad-491d-8f9e-4726dfee0733" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

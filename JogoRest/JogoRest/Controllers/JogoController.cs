@@ -36,13 +36,20 @@ namespace JogoRest.Controllers
         }
         [Route("api/MediaPut/{ID:int}")]
         [HttpPut]
-        public void Put(int id)
+        public void Put(int id, [FromBody] string value)
         {
+            Models.Jogo x = JsonConvert.DeserializeObject<Models.Jogo>(value);
             Models.JogoDataContext dc = new Models.JogoDataContext();
             Models.Jogo game= (from f in dc.Jogos
                                      where f.Id == id
                                      select f).Single();
-
+            /*game.Id = x.Id;
+            game.Nome = x.Nome;
+            game.Ano = x.Ano;
+            game.Sinopse = x.Sinopse;
+            game.Desenvolvedora = x.Desenvolvedora;
+            game.Imagem = x.Imagem;
+            game.IdGenero = x.IdGenero;*/
             game.NotaMedia = Media(id).ToString();
             dc.SubmitChanges();
 
