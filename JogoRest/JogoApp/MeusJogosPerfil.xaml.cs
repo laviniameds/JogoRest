@@ -26,9 +26,12 @@ namespace JogoApp
             InitializeComponent();
         }
 
+        private static Models.Usuario usr;
+
         public MeusJogosPerfil(Models.Usuario u)
         {
             InitializeComponent();
+            usr = u;
             PopulateGrid(u);
         }
 
@@ -42,7 +45,30 @@ namespace JogoApp
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.MeuJogo> obj = JsonConvert.DeserializeObject<List<Models.MeuJogo>>(str);
             List<Models.MeuJogo> mj = obj.FindAll(x => x.IdUsuario == u.Id);
-            dataGridMeusJogos.ItemsSource = mj;
+
+            List<Models.Jogo> jogoq = new List<Models.Jogo>();
+
+            var response2 = await httpClient.GetAsync("/api/Jogo/");
+            var str2 = response2.Content.ReadAsStringAsync().Result;
+            List<Models.Jogo> obj2 = JsonConvert.DeserializeObject<List<Models.Jogo>>(str2);
+
+            foreach (Models.MeuJogo mygame in obj)
+                foreach (Models.Jogo jogo in obj2)
+                {
+                    if (mygame.IdJogo == jogo.Id)
+                    {
+                        jogoq.Add(jogo);
+                    }                       
+                }
+            dataGridMeusJogos.ItemsSource = jogoq;
+        }
+
+        private void detalhes_Click(object sender, RoutedEventArgs e)
+        {
+            object myobject = ((Button)sender).CommandParameter;
+            Models.Jogo j = new Models.Jogo();
+            if (myobject is Models.Jogo) { j = (Models.Jogo)myobject; }
+            (new JogoDetalhes(j, usr)).Show();
         }
     }
 }

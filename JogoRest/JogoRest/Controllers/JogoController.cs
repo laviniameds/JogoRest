@@ -11,8 +11,6 @@ namespace JogoRest.Controllers
     public class JogoController : ApiController
     {
         // GET api/jogo
-        [Route("API/JogoGet")]
-        [HttpGet]
         public IEnumerable<Models.Jogo> Get()
         {
             Models.JogoDataContext dc = new Models.JogoDataContext();

@@ -343,11 +343,11 @@ namespace JogoApp
         
         private  async void Comentario_Click(object sender, RoutedEventArgs e)
         {
-
             object id = ((Button)sender).CommandParameter;
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
             await httpClient.DeleteAsync("/api/ComentDelSingle/" +int.Parse(id.ToString()));
+            g1.Items.Refresh();            
         }
     }
 }

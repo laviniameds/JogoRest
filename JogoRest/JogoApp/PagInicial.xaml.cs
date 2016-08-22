@@ -38,7 +38,7 @@ namespace JogoApp
         {
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(ip);
-            var response = await httpClient.GetAsync("/API/JogoGet");
+            var response = await httpClient.GetAsync("/API/Jogo/");
             var str = response.Content.ReadAsStringAsync().Result;
             List<Models.Jogo> obj = JsonConvert.DeserializeObject<List<Models.Jogo>>(str);
             gridJogos.ItemsSource = null;
